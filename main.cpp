@@ -31,29 +31,82 @@ public:
     }
 };
 
+
+class FirstBadVersion{
+public:
+    int search(vector<int>& nums, int n) {
+
+        int first = 0;
+        int end = n;
+
+        int pivot = n - 1;
+
+        while (first <= pivot) {
+            cout << "first : " << first << " pivot : " << pivot << " end : " << end << endl;
+
+            //if(first==pivot ){ break;}
+            if (nums[pivot] == 1 && nums[pivot - 1] == 1) {
+                end = pivot - 1;
+                pivot = (first + end) / 2;
+
+            } else if (nums[pivot] == 1 && nums[pivot - 1] == 0) {
+                //1과 end 사이에서 마지막 0을 찾아야함
+                //그리고 현재까지는 가장 작은 1이 end임을 알 수 있다. 하지만 더 작은 1이 있을 수 있으니 찾아야함
+//            first = pivot+1;
+//            pivot = (first + end)/2;
+                cout << pivot;
+                break;
+            } else if (nums[pivot] == 0 && nums[pivot + 1] == 0) {
+
+                first = pivot + 1;
+                pivot = (first + end) / 2;
+                //break;
+            } else {
+                cout << pivot + 1;
+                break;
+            }
+
+        }
+    }
+};
+
+
 int main() {
     //10개
-    vector<int> nums = {0,0,0,1,1,1,1,1,1,1};
-    int n = 10;
+    vector<int> nums = {1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+    int n = nums.size();
     int first = 0;
     int end = n;
 
-    int pivot = 10;
-    int i = 0;
-    while(i<=10){
+    int pivot = n-1;
+
+    while(first<=pivot){
         cout << "first : " << first << " pivot : " << pivot << " end : " << end << endl;
 
-        if(nums[pivot]==1){
+        //if(first==pivot ){ break;}
+        if(nums[pivot]==1 && nums[pivot-1]==1){
             end = pivot-1;
             pivot = (first + end)/2;
+
+        }
+        else if(nums[pivot]==1 && nums[pivot-1]==0){
+            //1과 end 사이에서 마지막 0을 찾아야함
+            //그리고 현재까지는 가장 작은 1이 end임을 알 수 있다. 하지만 더 작은 1이 있을 수 있으니 찾아야함
+//            first = pivot+1;
+//            pivot = (first + end)/2;
+            cout << pivot;
+            break;
+        }
+        else if(nums[pivot]==0 && nums[pivot+1]==0){
+
+            first = pivot+1;
+            pivot = (first + end)/2;
+            //break;
         }
         else{
-
+            cout << pivot+1;
+            break;
         }
-
-        i++;
-
-
 
     }
 
