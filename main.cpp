@@ -177,64 +177,70 @@ void insertionSort(vector<int> nums){
     }
 }
 
-int temp[8];
 
-//            if(nums[i] > nums[j]){
-//                int tmp = nums[right];
-//                nums[right] = nums[i];
-//                nums[i] = tmp;
-//            }
+int temp[8] = {0,};
 
 void conquer(int left, int mid, int right, vector<int>& nums){
-
+    cout << "conquer -> left: " << left << " right: "<< right << " /////";
     int idx = left;
-    //int flag = 0;
     int pivot = mid+1;
+    int i = left;
 
-    //21 56 2 89
-
-    for (int i = left; i <= mid; ++i) {
-
-        for (int j = pivot; j <= right; ++j) {
-
-            if(nums[i] > nums[j]){
-
-                temp[idx++] = nums[j];
-            }
+    while(idx <= right){
+        //cout << left << ", " << pivot << ", " << idx << endl;
+        if(nums[left] > nums[pivot]){
+            if(pivot<right){temp[idx++] = nums[pivot]; pivot++;}
             else{
-                if(i==mid){temp[idx] = nums[j];}
-                else{temp[idx++] = nums[i]; pivot = j;}
-                break;
+                temp[idx++] = nums[pivot];
+                for (; left <=mid; ++left) {
+                    temp[idx++] = nums[left];
+
+                }
+
             }
 
         }
+        else{
+            if(left<mid){temp[idx++] = nums[left]; left++;}
+            else{
+                temp[idx++] = nums[left];
+                for (; pivot <=right; ++pivot) {
+                    temp[idx++] = nums[pivot];
 
+                }
+            }
+
+        }
     }
-    cout << "conquer : "; printArray(temp); cout << endl;
+
+    for (; i <=right; ++i) {
+        nums[i]=temp[i];
+    }
+
+     printArray(temp); cout << endl;
 }
 
 void divide(int left, int mid, int right, vector<int>& nums){
     cout << "left : " << left << " mid : " << mid << " right : " << right << endl;
-
-    if(left == mid){
-
-        cout << "nums left : "<< nums[left] << endl;
-        conquer(left, mid, right, nums);
-        //temp[left] = nums[left];
-    }
-    else{
-
+    //conquer(left, mid, right, nums);
+    if(left <mid){
         divide(mid+1, ((mid+1)+right)/2, right, nums);
-        conquer(left, mid, right, nums);
         divide(left, (left+mid)/2, mid, nums);
-        conquer(left,  mid, right, nums);
+
     }
+    conquer(left,  mid, right, nums);
+
+
+//    if(left == mid){  }
+//    else{
+//        divide(mid+1, ((mid+1)+right)/2, right, nums);
+//        //conquer(left, mid, right, nums);
+//        divide(left, (left+mid)/2, mid, nums);
+//
+//    }
 
 
 }
-
-
-//21 56    2 89
 
 int main() {
                       //0 1 2  3  4  5  6 7
@@ -247,14 +253,7 @@ int main() {
 
     divide(left, mid, right, nums);
 
-    //printArray(tmp);
-
-
-
-
-
-
-
+    //conquer(left, mid, right, nums);
 
     return 0;
 }
