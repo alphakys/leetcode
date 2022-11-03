@@ -129,6 +129,15 @@ void printList(vector<int>& nums){
 
 }
 
+void printArray(int arr[]){
+    int len = sizeof(arr);
+
+    for(int i=0; i<len; i++){
+        cout << arr[i] << ' ';
+    }
+
+}
+
 void selectionSort(vector<int> nums){
     int len = nums.size();
 
@@ -168,10 +177,67 @@ void insertionSort(vector<int> nums){
     }
 }
 
+int temp[8];
 
+//            if(nums[i] > nums[j]){
+//                int tmp = nums[right];
+//                nums[right] = nums[i];
+//                nums[i] = tmp;
+//            }
+
+void conquer(int left, int mid, int right, vector<int>& nums){
+
+    int idx = left;
+    //int flag = 0;
+    int pivot = mid+1;
+
+    //21 56 2 89
+
+    for (int i = left; i <= mid; ++i) {
+
+        for (int j = pivot; j <= right; ++j) {
+
+            if(nums[i] > nums[j]){
+
+                temp[idx++] = nums[j];
+            }
+            else{
+                if(i==mid){temp[idx] = nums[j];}
+                else{temp[idx++] = nums[i]; pivot = j;}
+                break;
+            }
+
+        }
+
+    }
+    cout << "conquer : "; printArray(temp); cout << endl;
+}
+
+void divide(int left, int mid, int right, vector<int>& nums){
+    cout << "left : " << left << " mid : " << mid << " right : " << right << endl;
+
+    if(left == mid){
+
+        cout << "nums left : "<< nums[left] << endl;
+        conquer(left, mid, right, nums);
+        //temp[left] = nums[left];
+    }
+    else{
+
+        divide(mid+1, ((mid+1)+right)/2, right, nums);
+        conquer(left, mid, right, nums);
+        divide(left, (left+mid)/2, mid, nums);
+        conquer(left,  mid, right, nums);
+    }
+
+
+}
+
+
+//21 56    2 89
 
 int main() {
-    //10개
+                      //0 1 2  3  4  5  6 7
     vector<int> nums = {8,9,5,98,56,21,89,2};
 
     int len = nums.size();
@@ -179,27 +245,13 @@ int main() {
     int right = len-1;
     int mid = (left + right)/2;
 
-    while(left<=mid){
-        cout << "first : " << left << " pivot : " << mid << " end : " << right << rightl;
+    divide(left, mid, right, nums);
 
-        if(left==mid && nums[mid] != target){ answer = right; break;}
+    //printArray(tmp);
 
-        if(nums[mid] < target){
-            left = mid;
-            mid = (left + right)/2;
 
-        }
-        else if(nums[mid]== target ) {
-            answer = mid;
-            break;
-        }
-        else if(nums[mid]> target){
-            right = mid;
-            mid = (left + right)/2;
 
-        }
 
-    }
 
 
 
