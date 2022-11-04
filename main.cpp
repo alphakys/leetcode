@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <array>
+#include<cstdlib>
+
 using namespace std;
 
 class BinarySearch{
@@ -110,6 +113,83 @@ public:
     }
 };
 
+class MergeSort{
+public:
+    int temp[100001] = {0,};
+
+    void conquer(int left, int mid, int right, vector<int>& nums){
+
+        int idx = left;
+        int pivot = mid+1;
+        int i = left;
+
+        if(left ==right){temp[idx] = nums[left];return;}
+        while(idx < right){
+
+            if(nums[left] > nums[pivot]){
+                if(pivot<right){temp[idx++] = nums[pivot]; pivot++;}
+                else{
+                    temp[idx++] = nums[pivot];
+                    for (; left <=mid; ++left) {
+                        temp[idx++] = nums[left];
+
+                    }
+
+                }
+
+            }
+            else{
+                if(left<mid){temp[idx++] = nums[left]; left++;}
+                else{
+                    temp[idx++] = nums[left];
+                    for (; pivot <=right; ++pivot) {
+                        temp[idx++] = nums[pivot];
+
+                    }
+                }
+
+            }
+        }
+
+        for (; i <=right; i++) {
+            nums[i]=temp[i];
+        }
+    }
+
+    void mergeSort(int left, int mid, int right, vector<int>& nums){
+
+        if(left <mid){
+            mergeSort(mid+1, ((mid+1)+right)/2, right, nums);
+            mergeSort(left, (left+mid)/2, mid, nums);
+
+        }
+        conquer(left,  mid, right, nums);
+
+    }
+};
+
+
+class RotateArray{
+public:
+    int search(vector<int>& nums, int n) {
+
+        int len = nums.size();
+
+        vector<int> arr(len,0);
+        int k = 2;
+
+        for (int i = 0; i < len; i++) {
+            int target_idx =i+k;
+            if( target_idx > (len-1) ) { target_idx = target_idx % len; arr[target_idx] = nums[i]; }
+            else{arr[target_idx] = nums[i];}
+        }
+        //printList(arr); cout << endl;
+        nums = arr;
+
+    }
+};
+
+
 int square(int num, int multiple){
 
     int value = 1;
@@ -129,14 +209,73 @@ void printList(vector<int>& nums){
 
 }
 
-void printArray(int arr[]){
-    int len = sizeof(arr);
+void printArray(int arr[], int len){
 
     for(int i=0; i<len; i++){
         cout << arr[i] << ' ';
     }
 
 }
+
+
+
+int main() {
+    //                  0 1 2 3  4
+    vector<int> nums = {1,0};
+
+    int len = nums.size();
+    int zero_cnt = 0;
+    int idx = 0;
+
+    for (int i = 0; i < len; i++) {
+        cout <<"i : "<< i << endl;
+        if(nums[i]==0){
+            zero_cnt++;
+            continue;
+        }
+
+        if(i==len-1){ nums[idx++] = nums[i]; }
+
+        for (int j = i+1; j < len; ++j) {
+
+            if(nums[j]==0){
+                zero_cnt++;
+                continue;
+            }
+            else if(nums[i] > nums[j]){
+                nums[idx++] = nums[j];
+            }else{
+                nums[idx++] = nums[i];
+                i = --j;
+                break;
+            }
+        }
+        printList(nums); cout << endl;
+    }
+
+    for (; idx < len; ++idx) {
+        nums[idx] = 0;
+    }
+    printList(nums); cout << endl;
+
+    cout << zero_cnt << ", " << idx;
+
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 void selectionSort(vector<int> nums){
     int len = nums.size();
@@ -177,86 +316,31 @@ void insertionSort(vector<int> nums){
     }
 }
 
+void twoPointers(vector<int> nums){
+    int len = nums.size()-1;
+    vector<int> arr(len+1, 0);
 
-int temp[8] = {0,};
+    int l = 0;
+    int r = len;
 
-void conquer(int left, int mid, int right, vector<int>& nums){
-    cout << "conquer -> left: " << left << " right: "<< right << " /////";
-    int idx = left;
-    int pivot = mid+1;
-    int i = left;
+    int l_num = 0;
+    int r_num = 0;
 
-    while(idx <= right){
-        //cout << left << ", " << pivot << ", " << idx << endl;
-        if(nums[left] > nums[pivot]){
-            if(pivot<right){temp[idx++] = nums[pivot]; pivot++;}
-            else{
-                temp[idx++] = nums[pivot];
-                for (; left <=mid; ++left) {
-                    temp[idx++] = nums[left];
+    while(l<=r){
 
-                }
+        l_num = abs(nums[l]);
+        r_num = abs(nums[r]);
+        if(l==r){arr[len--] = square(l_num,2); break;}
 
-            }
-
-        }
-        else{
-            if(left<mid){temp[idx++] = nums[left]; left++;}
-            else{
-                temp[idx++] = nums[left];
-                for (; pivot <=right; ++pivot) {
-                    temp[idx++] = nums[pivot];
-
-                }
-            }
-
-        }
-    }
-
-    for (; i <=right; ++i) {
-        nums[i]=temp[i];
-    }
-
-     printArray(temp); cout << endl;
-}
-
-void divide(int left, int mid, int right, vector<int>& nums){
-    cout << "left : " << left << " mid : " << mid << " right : " << right << endl;
-    //conquer(left, mid, right, nums);
-    if(left <mid){
-        divide(mid+1, ((mid+1)+right)/2, right, nums);
-        divide(left, (left+mid)/2, mid, nums);
+        if(l_num < r_num){ cout << r_num<<endl; arr[len--] = square(r_num,2); r--;}
+        else{cout << l_num<<endl; arr[len--] = square(l_num,2); l++;}
 
     }
-    conquer(left,  mid, right, nums);
 
-
-//    if(left == mid){  }
-//    else{
-//        divide(mid+1, ((mid+1)+right)/2, right, nums);
-//        //conquer(left, mid, right, nums);
-//        divide(left, (left+mid)/2, mid, nums);
-//
-//    }
-
-
+    printList(arr);
 }
 
-int main() {
-                      //0 1 2  3  4  5  6 7
-    vector<int> nums = {8,9,5,98,56,21,89,2};
 
-    int len = nums.size();
-    int left = 0;
-    int right = len-1;
-    int mid = (left + right)/2;
-
-    divide(left, mid, right, nums);
-
-    //conquer(left, mid, right, nums);
-
-    return 0;
-}
 
 
 
