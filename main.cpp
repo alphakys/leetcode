@@ -190,6 +190,53 @@ public:
 };
 
 
+class MoveZeroes{
+public:
+    int search(vector<int>& nums, int n) {
+
+        int len = nums.size();
+        int zero_cnt = 0;
+        int idx = 0;
+
+        for (int i = 0; i < len; i++) {
+            cout <<"i : "<< i << endl;
+            if(nums[i]==0){
+                zero_cnt++;
+                continue;
+            }
+
+            if(i==len-1){ nums[idx++] = nums[i]; }
+
+            for (int j = i+1; j < len; ++j) {
+
+                if(nums[j]==0){
+                    zero_cnt++;
+                    continue;
+                }
+                else if(nums[i] > nums[j]){
+                    nums[idx++] = nums[j];
+                }else{
+                    nums[idx++] = nums[i];
+                    i = --j;
+                    break;
+                }
+            }
+            //printList(nums); cout << endl;
+        }
+
+        for (; idx < len; ++idx) {
+            nums[idx] = 0;
+        }
+        //printList(nums); cout << endl;
+
+        cout << zero_cnt << ", " << idx;
+
+
+
+    }
+};
+
+
 int square(int num, int multiple){
 
     int value = 1;
@@ -220,45 +267,34 @@ void printArray(int arr[], int len){
 
 
 int main() {
-    //                  0 1 2 3  4
-    vector<int> nums = {1,0};
+    //                     0 1  2   3  4   5   6   7
+    vector<int> numbers = {3,24,50,50,50,50,50,50,79,79,79,79,79,79,79,79,79,88,88,88,150,190,345200};
+    vector<int> answer(2,0);
+    int len = numbers.size();
 
-    int len = nums.size();
-    int zero_cnt = 0;
-    int idx = 0;
+    int target = 200;
+    int end = len;
+    int duplicate = 0;
 
-    for (int i = 0; i < len; i++) {
-        cout <<"i : "<< i << endl;
-        if(nums[i]==0){
-            zero_cnt++;
-            continue;
+    for (int i = 0; i < len and (numbers[i]<=target or numbers[i]==0); i++) {
+        cout << i <<" , " << end << endl;
+        int sum = 0;
+        duplicate = numbers[i]+numbers[i+1];
+        for (int j = i+1; j < end; ++j) {
+            //cout << j <<" , "<< endl;
+            sum= numbers[i]+numbers[j];
+            if(sum == duplicate){}
+
+            if(sum==target){
+                answer[0] = i+1; answer[1] = j+1;goto end;}
+            else if(sum>target){ end = j;break;}
         }
 
-        if(i==len-1){ nums[idx++] = nums[i]; }
-
-        for (int j = i+1; j < len; ++j) {
-
-            if(nums[j]==0){
-                zero_cnt++;
-                continue;
-            }
-            else if(nums[i] > nums[j]){
-                nums[idx++] = nums[j];
-            }else{
-                nums[idx++] = nums[i];
-                i = --j;
-                break;
-            }
-        }
-        printList(nums); cout << endl;
     }
 
-    for (; idx < len; ++idx) {
-        nums[idx] = 0;
-    }
-    printList(nums); cout << endl;
+    end:
+    printList(answer);
 
-    cout << zero_cnt << ", " << idx;
 
 
 
