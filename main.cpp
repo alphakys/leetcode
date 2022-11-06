@@ -303,52 +303,21 @@ void printArray(int arr[], int len){
 
 }
 
+void quickDivide(int l, int pivot, int r, vector<int>& nums){
+
+}
 
 
 int main() {
-    //                     0 1  2   3  4   5   6   7
-
-    vector<int> nums = {0,1,0,3,12};
+    //                  0 1 2 3 4 5 6 7 8
+    vector<int> nums = {5,3,8,4,9,1,6,2,7};
 
     int len = nums.size();
-    int zero_cnt = 0;
-    int idx = 0;
+    int l = 0;
+    int r = len-1;
+    int pivot = l+ ((r-l)/2);
 
-    for (int i = 0; i < len; i++) {
-        cout <<"i : "<< i << endl;
-        if(nums[i]==0){
-            zero_cnt++;
-            continue;
-        }
-
-        if(i==len-1){ nums[idx++] = nums[i]; }
-
-        for (int j = i+1; j < len; ++j) {
-
-            if(nums[j]==0){
-                zero_cnt++;
-                continue;
-            }
-            else if(nums[i] > nums[j]){
-                nums[idx++] = nums[j];
-            }else{
-                nums[idx++] = nums[i];
-                i = --j;
-                break;
-            }
-        }
-        //printList(nums); cout << endl;
-    }
-
-    for (; idx < len; ++idx) {
-        nums[idx] = 0;
-    }
-    //printList(nums); cout << endl;
-
-    cout << zero_cnt << ", " << idx;
-
-
-
+    quickDivide(l, pivot, r, nums);
 
     return 0;
 }
