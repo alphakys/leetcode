@@ -312,17 +312,63 @@ void quickDivide(int l, int pivot, int r, vector<int>& nums){
     }
 }
 
-void quickConquer(int l, int pivot, int r, vector<int>& nums){
+void quickConquer(int l, int mid, int r, vector<int>& nums){
 
-    if(nums[l] >nums[pivot]){
-        if(nums[l] > nums[pivot]){ int tmp = nums[l]; nums[r] = nums[l]; nums[l] = tmp;}
-        else{ int high_ptr = nums[l]; }
+    int pivot = r;
+    int right_most = r-1;
+
+    int left_change = 0;
+    int right_change = 0;
+
+    for (int i = 0; i < 10; ++i) {
+        //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
+        //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
+
+        if(l<mid && nums[l] > nums[pivot] && mid<right_most && nums[right_most] < nums[pivot]){
+
+            int tmp = nums[l];
+            nums[l] = nums[right_most];
+            nums[right_most] = tmp;
+            l++;right_most--;
+        }
+
+        else if(mid<right_most && nums[right_most] < nums[pivot])
+        {
+
+            while(l<mid){
+                if(nums[l] > nums[pivot]){
+                    int tmp = nums[l];
+                    nums[l] = nums[right_most];
+                    nums[right_most] = tmp;
+                }
+                l++;right_most--;
+            }
+
+        }
+
+        else if(l<mid && nums[l] > nums[pivot])
+        {
+            while(mid<right_most){
+                if(nums[right_most] < nums[pivot]){
+                    int tmp = nums[l];
+                    nums[l] = nums[right_most];
+                    nums[right_most] = tmp;
+                }
+                l++;right_most--;
+            }
+        }
+
+        printList(nums); cout <<endl;
     }
+
 }
 
 int main() {
     //                  0  1 2 3 4 5 6 7  8
-    vector<int> nums = {9,11,8,4,5,1,6,10,7};
+    vector<int> nums = {9,11,12,176,5,14,6,19,7};
+                      //9,7 12 176 5 14 6 19 11
+                      //9,7 6 176 5 14 12 19 11
+                      //9,7 6 176 5 14 12 19 11
                       //h, h,h
                       //9,11,8,4,5,1,6,10,7
                       //1,11,8,4,5,9,6,10,7
@@ -348,9 +394,10 @@ int main() {
     int len = nums.size();
     int l = 0;
     int r = len-1;
-    int pivot = l+ ((r-l)/2);
+    int mid = l+ ((r-l)/2);
 
-    quickDivide(l, pivot, r, nums);
+    quickConquer(l, mid, r, nums);
+    //quickDivide(l, mid, r, nums);
 
     return 0;
 }
