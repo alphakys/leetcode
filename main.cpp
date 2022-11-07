@@ -304,14 +304,47 @@ void printArray(int arr[], int len){
 }
 
 void quickDivide(int l, int pivot, int r, vector<int>& nums){
-
+    cout << "l : " << l << " pivot: " << pivot << " r: " << r << endl;
+    if(l<pivot){
+        quickDivide(l, l+ ((pivot-l)/2), pivot, nums);
+        l = pivot+1;
+        quickDivide(l, l+ ((r-l)/2), r, nums);
+    }
 }
 
+void quickConquer(int l, int pivot, int r, vector<int>& nums){
+
+    if(nums[l] >nums[pivot]){
+        if(nums[l] > nums[pivot]){ int tmp = nums[l]; nums[r] = nums[l]; nums[l] = tmp;}
+        else{ int high_ptr = nums[l]; }
+    }
+}
 
 int main() {
-    //                  0 1 2 3 4 5 6 7 8
-    vector<int> nums = {5,3,8,4,9,1,6,2,7};
+    //                  0  1 2 3 4 5 6 7  8
+    vector<int> nums = {9,11,8,4,5,1,6,10,7};
+                      //h, h,h
+                      //9,11,8,4,5,1,6,10,7
+                      //1,11,8,4,5,9,6,10,7
+                      //1,5,8,4,11,9,6,10,7
+                      //
 
+                      //5,11,8,4,9,1,6,10,7
+
+    //
+                      //9,11,8,4,5,1,6,10,7
+                      //p
+
+                      //9,11,8,4,5,1,6,10,7
+                         //p
+                      //9,6,8,4,5,1,11,10,7
+                          //p
+
+                      //9,1,8,4,5,11,6,10,7
+
+
+                      //5,1,8,4,9,11,6,10,7
+                      //5,1,8,4,9,11,6,10,7
     int len = nums.size();
     int l = 0;
     int r = len-1;
