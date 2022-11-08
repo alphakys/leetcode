@@ -320,46 +320,68 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
     int left_change = 0;
     int right_change = 0;
 
-    for (int i = 0; i < 10; ++i) {
+    //{9,11,12,176,5,14,6,19,7};
+
+    for (; l < mid and mid< right_most;) {
         //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
         //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
 
-        if(l<mid && nums[l] > nums[pivot] && mid<right_most && nums[right_most] < nums[pivot]){
+        if(nums[l] > nums[pivot]){
 
-            int tmp = nums[l];
-            nums[l] = nums[right_most];
-            nums[right_most] = tmp;
-            l++;right_most--;
-        }
-
-        else if(mid<right_most && nums[right_most] < nums[pivot])
-        {
-
-            while(l<mid){
-                if(nums[l] > nums[pivot]){
-                    int tmp = nums[l];
-                    nums[l] = nums[right_most];
-                    nums[right_most] = tmp;
-                }
+            if(nums[right_most] < nums[pivot]){
+                int tmp = nums[l];
+                nums[l] = nums[right_most];
+                nums[right_most] = tmp;
                 l++;right_most--;
-            }
+            }else{right_most--;}
 
-        }
 
-        else if(l<mid && nums[l] > nums[pivot])
-        {
-            while(mid<right_most){
-                if(nums[right_most] < nums[pivot]){
-                    int tmp = nums[l];
-                    nums[l] = nums[right_most];
-                    nums[right_most] = tmp;
-                }
-                l++;right_most--;
-            }
-        }
+        }else{l++; right_most--;}
 
         printList(nums); cout <<endl;
+
+
+//        if(l<mid && nums[l] > nums[pivot] && mid<right_most && nums[right_most] < nums[pivot]){
+//
+//            int tmp = nums[l];
+//            nums[l] = nums[right_most];
+//            nums[right_most] = tmp;
+//            l++;right_most--;
+//        }
+//
+//        else if(mid<right_most && nums[right_most] < nums[pivot])
+//        {
+//
+//            while(l<mid){
+//                if(nums[l] > nums[pivot]){
+//                    int tmp = nums[l];
+//                    nums[l] = nums[right_most];
+//                    nums[right_most] = tmp;
+//                }
+//                l++;right_most--;
+//            }
+//
+//        }
+//
+//        else if(l<mid && nums[l] > nums[pivot])
+//        {
+//            while(mid<right_most){
+//                if(nums[right_most] < nums[pivot]){
+//                    int tmp = nums[l];
+//                    nums[l] = nums[right_most];
+//                    nums[right_most] = tmp;
+//                }
+//                l++;right_most--;
+//            }
+//        }
+
+
     }
+
+    int tmp = nums[mid];
+    nums[mid] = nums[pivot];
+    nums[pivot] = tmp;
+    printList(nums); cout <<endl;
 
 }
 
