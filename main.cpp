@@ -322,7 +322,11 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
     //{9,11,12,176,5,14,6,19,7};
 
-    //9 24
+    //{7,11,12,176,5,14,6,19,9}
+    //{7,6,12,176,5,14,11,19,9}
+    //{7,6,9,176,5,14,11,19,12}
+    //{7,6,9,12,5,14,11,19,176}
+
     for (; l < mid and mid< right_most;) {
         //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
         //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
@@ -334,10 +338,18 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
                 nums[l] = nums[right_most];
                 nums[right_most] = tmp;
                 l++;right_most--;
-            }else{right_most--;}
+            }else{
+                int tmp = nums[l];
+                nums[l] = nums[pivot];
+                nums[pivot] = tmp;
+                l++;right_most--;
+            }
 
 
-        }else{l++; right_most--;}
+        }else{
+            //if(nums[right_most] < nums[pivot]){}
+            l++; right_most--;
+        }
 
         printList(nums); cout <<endl;
 
@@ -378,7 +390,7 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
 
     }
-
+    if(nums[mid])
     int tmp = nums[mid];
     nums[mid] = nums[pivot];
     nums[pivot] = tmp;
