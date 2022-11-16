@@ -312,120 +312,53 @@ void quickDivide(int l, int pivot, int r, vector<int>& nums){
     }
 }
 
+void swap(int a, int b, vector<int>& nums){
+    int tmp = nums[a];
+    nums[a] = nums[b];
+    nums[b] = tmp;
+}
+
 void quickConquer(int l, int mid, int r, vector<int>& nums){
 
     int pivot = r;
     int right_most = r-1;
 
-    int left_change = 0;
-    int right_change = 0;
+    //{16,14,12,13, 10 ,9,15,8,11}
 
-    //{9,11,12,176,5,14,6,19,7};
-    // 어떻게 할 것인가
-    //{7,11,12,176,5,14,6,19,9}
-    //{7,6,12,176,5,14,11,19,9}
-    //{7,6,9,176,5,14,11,19,12}
-    //{7,6,9,12,5,14,11,19,176}
-
-    for (; l < mid and mid< right_most;) {
+    for (; l < mid && mid < right_most;) {
         //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
         //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
 
         if(nums[l] > nums[pivot]){
 
             if(nums[right_most] < nums[pivot]){
-                int tmp = nums[l];
-                nums[l] = nums[right_most];
-                nums[right_most] = tmp;
-                l++;right_most--;
+                swap(l, right_most, nums);
+
             }else{
-                int tmp = nums[l];
-                nums[l] = nums[pivot];
-                nums[pivot] = tmp;
-                l++;right_most--;
+
+                if(nums[l] > nums[right_most]){ swap(right_most, pivot, nums); pivot = right_most;}
+                else{ swap(l, pivot, nums); pivot = l; }
+
             }
 
-
-        }else{
-            //if(nums[right_most] < nums[pivot]){}
-            l++; right_most--;
         }
-
+        l++;right_most--;
         printList(nums); cout <<endl;
 
-
-//        if(l<mid && nums[l] > nums[pivot] && mid<right_most && nums[right_most] < nums[pivot]){
-//
-//            int tmp = nums[l];
-//            nums[l] = nums[right_most];
-//            nums[right_most] = tmp;
-//            l++;right_most--;
-//        }
-//
-//        else if(mid<right_most && nums[right_most] < nums[pivot])
-//        {
-//
-//            while(l<mid){
-//                if(nums[l] > nums[pivot]){
-//                    int tmp = nums[l];
-//                    nums[l] = nums[right_most];
-//                    nums[right_most] = tmp;
-//                }
-//                l++;right_most--;
-//            }
-//
-//        }
-//
-//        else if(l<mid && nums[l] > nums[pivot])
-//        {
-//            while(mid<right_most){
-//                if(nums[right_most] < nums[pivot]){
-//                    int tmp = nums[l];
-//                    nums[l] = nums[right_most];
-//                    nums[right_most] = tmp;
-//                }
-//                l++;right_most--;
-//            }
-//        }
-
-
     }
-    if(nums[mid])
-    int tmp = nums[mid];
-    nums[mid] = nums[pivot];
-    nums[pivot] = tmp;
-    printList(nums); cout <<endl;
+
+//    if(nums[mid])
+//    int tmp = nums[mid];
+//    nums[mid] = nums[pivot];
+//    nums[pivot] = tmp;
+//    printList(nums); cout <<endl;
 
 }
 
 int main() {
-    //                  0  1 2 3 4 5 6 7  8
-    vector<int> nums = {9,11,12,176,5,14,6,19,7};
-                      //9,7 12 176 5 14 6 19 11
-                      //9,7 6 176 5 14 12 19 11
-                      //9,7 6 176 5 14 12 19 11
-                      //h, h,h
-                      //9,11,8,4,5,1,6,10,7
-                      //1,11,8,4,5,9,6,10,7
-                      //1,5,8,4,11,9,6,10,7
-                      //
+    //                  0  1   2  3   4  5 6  7  8
+    vector<int> nums = {16,14,12,13, 10 ,9,15,8,11};
 
-                      //5,11,8,4,9,1,6,10,7
-
-    //
-                      //9,11,8,4,5,1,6,10,7
-                      //p
-
-                      //9,11,8,4,5,1,6,10,7
-                         //p
-                      //9,6,8,4,5,1,11,10,7
-                          //p
-
-                      //9,1,8,4,5,11,6,10,7
-
-
-                      //5,1,8,4,9,11,6,10,7
-                      //5,1,8,4,9,11,6,10,7
     int len = nums.size();
     int l = 0;
     int r = len-1;
