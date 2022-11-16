@@ -320,24 +320,25 @@ void swap(int a, int b, vector<int>& nums){
 
 void quickConquer(int l, int mid, int r, vector<int>& nums){
 
+    printf("mid : %d\n", nums[mid]);
     int pivot = r;
     int right_most = r-1;
+    int flag = r;
+    //{16,14,12,13, 10 ,4, 9,15,8,11}
 
-    //{16,14,12,13, 10 ,9,15,8,11}
-
-    for (; l < mid && mid < right_most;) {
+    for (; l < mid or mid < right_most;) {
         //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
         //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
 
-        if(nums[l] > nums[pivot]){
+        if(nums[l] > nums[flag]){
 
-            if(nums[right_most] < nums[pivot]){
+            if(nums[right_most] < nums[flag]){
                 swap(l, right_most, nums);
 
             }else{
 
-                if(nums[l] > nums[right_most]){ swap(right_most, pivot, nums); pivot = right_most;}
-                else{ swap(l, pivot, nums); pivot = l; }
+                if(nums[l] > nums[right_most]){ swap(right_most, pivot, nums); swap(l, right_most, nums); flag = right_most;}
+                else{ swap(l, pivot, nums); flag = l; }
 
             }
 
@@ -346,8 +347,10 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
         printList(nums); cout <<endl;
 
     }
+    swap(flag, mid, nums);
+    printList(nums); cout <<endl;
 
-//    if(nums[mid])
+    //    if(nums[mid])
 //    int tmp = nums[mid];
 //    nums[mid] = nums[pivot];
 //    nums[pivot] = tmp;
@@ -357,7 +360,7 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
 int main() {
     //                  0  1   2  3   4  5 6  7  8
-    vector<int> nums = {16,14,12,13, 10 ,9,15,8,11};
+    vector<int> nums = {16,14,20,13, 10,  5,24,12,8,11};
 
     int len = nums.size();
     int l = 0;
