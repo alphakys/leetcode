@@ -327,7 +327,7 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
     //{16,14,12,13, 10 ,4, 9,15,8,11}
 
     for (; l < mid or mid < right_most;) {
-        //cout << "l : " << l << " pivot: " << pivot << " right_most: " << right_most << endl;
+        cout << "l : " << nums[l] << " flag: " << nums[flag] << " right_most: " << nums[right_most] << endl;
         //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
 
         if(nums[l] > nums[flag]){
@@ -336,19 +336,22 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
                 swap(l, right_most, nums);
 
             }else{
-
-                if(nums[l] > nums[right_most]){ swap(right_most, pivot, nums); swap(l, right_most, nums); flag = right_most;}
-                else{ swap(l, pivot, nums); flag = l; }
+                //cout << nums[l] << "," << nums[right_most] << endl;
+                if(nums[l] > nums[right_most]){  swap(right_most, pivot, nums); swap(l, right_most, nums); flag = l;}
+                else{  swap(l, pivot, nums); }
 
             }
 
         }
         l++;right_most--;
-        printList(nums); cout <<endl;
+        printList(nums); cout << endl;
 
     }
-    swap(flag, mid, nums);
-    printList(nums); cout <<endl;
+
+
+
+//    swap(flag, mid, nums);
+//    printList(nums); cout <<endl;
 
     //    if(nums[mid])
 //    int tmp = nums[mid];
@@ -359,8 +362,8 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 }
 
 int main() {
-    //                  0  1   2  3   4  5 6  7  8
-    vector<int> nums = {16,14,20,13, 10,  5,24,12,8,11};
+    //                  0  1   2  3   4    5 6  7  8 9
+    vector<int> nums = {16,14,20,13, 10,  11,24,12,5,8};//{16,14,20,13, 10,  5,24,12,8,11};
 
     int len = nums.size();
     int l = 0;
