@@ -326,11 +326,11 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
     int flag = r;
     //{16,14,5,13, 10, 11,24,12,20,8}
 
+    //{10, 80, 70, 90, 40, 50, 30}
 
-    //{10, 80, 30, 90, 40, 50, 70}
-    //{10, 80, 30, 50, 40, 90, 70}
+    //{10, 80, 30, 90, 50, 70, 40}
     for (; l < mid or mid < right_most;) {
-        cout << "l : " << nums[l] << " flag: " << nums[flag] << " right_most: " << nums[right_most] << endl;
+        cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
 
         // l 크다
         if(nums[l] > nums[r]){
@@ -340,7 +340,9 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
             }else{
                 //r 크
-                swap(mid, l, nums);
+                right_most--;
+                continue;
+                //swap(mid, l, nums);
             }
 
         }
@@ -348,7 +350,9 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
         else{
             //r 작다
             if(nums[right_most] < nums[r]){
-                swap(mid, right_most, nums);
+                l++;
+                continue;
+                //swap(mid, right_most, nums);
             }
 
         }
@@ -359,8 +363,9 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
 
 
-//    swap(flag, mid, nums);
-//    printList(nums); cout <<endl;
+swap(r, mid, nums);
+printList(nums);
+//cout <<endl;
 
     //    if(nums[mid])
 //    int tmp = nums[mid];
@@ -372,11 +377,12 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 
 int main() {
     //                  0    1   2   3   4   5   6    7  8 9
-    vector<int> nums = {10, 80, 70, 90, 40, 50, 30};//{16,14,20,13, 10,  5,24,12,8,11};   {16,14,5,13, 10, 11,24,12,20,8}
-    //
+    vector<int> nums = {10, 80, 30, 90, 50, 70, 40};//{16,14,20,13, 10,  5,24,12,8,11};   {16,14,5,13, 10, 11,24,12,20,8}
+    // 9 12 2 17 1 6
+
     // 5 8 10 11 12 13 14 16 20 24
 
-
+//    10, 80, 30, 90, 40, 50, 70
 //    //{16,14,5,13, 10, 11,24,12,20,8}
 //        /                        /
 //    //{8,14,5,13, 10, 11,24,12,20,16}
