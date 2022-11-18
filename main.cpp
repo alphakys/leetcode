@@ -324,22 +324,31 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
     int pivot = r;
     int right_most = r-1;
     int flag = r;
-    //{16,14,12,13, 10 ,4, 9,15,8,11}
+    //{16,14,5,13, 10, 11,24,12,20,8}
 
+
+    //{10, 80, 30, 90, 40, 50, 70}
+    //{10, 80, 30, 50, 40, 90, 70}
     for (; l < mid or mid < right_most;) {
         cout << "l : " << nums[l] << " flag: " << nums[flag] << " right_most: " << nums[right_most] << endl;
-        //cout << "l nums : " << nums[l] << " pivot num: " << nums[pivot] << " right_most num " << nums[right_most] << endl;
 
-        if(nums[l] > nums[flag]){
-
-            if(nums[right_most] < nums[flag]){
+        // l 크다
+        if(nums[l] > nums[r]){
+            //r 작다
+            if(nums[right_most] < nums[r]){
                 swap(l, right_most, nums);
 
             }else{
-                //cout << nums[l] << "," << nums[right_most] << endl;
-                if(nums[l] > nums[right_most]){  swap(right_most, pivot, nums); swap(l, right_most, nums); flag = l;}
-                else{  swap(l, pivot, nums); }
+                //r 크
+                swap(mid, l, nums);
+            }
 
+        }
+        //l 작다
+        else{
+            //r 작다
+            if(nums[right_most] < nums[r]){
+                swap(mid, right_most, nums);
             }
 
         }
@@ -362,8 +371,21 @@ void quickConquer(int l, int mid, int r, vector<int>& nums){
 }
 
 int main() {
-    //                  0  1   2  3   4    5 6  7  8 9
-    vector<int> nums = {16,14,20,13, 10,  11,24,12,5,8};//{16,14,20,13, 10,  5,24,12,8,11};
+    //                  0    1   2   3   4   5   6    7  8 9
+    vector<int> nums = {10, 80, 70, 90, 40, 50, 30};//{16,14,20,13, 10,  5,24,12,8,11};   {16,14,5,13, 10, 11,24,12,20,8}
+    //
+    // 5 8 10 11 12 13 14 16 20 24
+
+
+//    //{16,14,5,13, 10, 11,24,12,20,8}
+//        /                        /
+//    //{8,14,5,13, 10, 11,24,12,20,16}
+//          /                  /
+//    //{8,12,5,13, 10, 11,24,16,20,14}
+//            /             /
+//    //{8,12,5,13, 10, 11,24,16,20,14}
+//               /       /
+//    //{8,12,5,11, 10, 14,24,16,20,13}
 
     int len = nums.size();
     int l = 0;
@@ -375,9 +397,6 @@ int main() {
 
     return 0;
 }
-
-
-
 
 
 
