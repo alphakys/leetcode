@@ -303,14 +303,6 @@ void printArray(int arr[], int len){
 
 }
 
-void quickDivide(int l, int pivot, int r, vector<int>& nums){
-    cout << "l : " << l << " pivot: " << pivot << " r: " << r << endl;
-    if(l<pivot){
-        quickDivide(l, l+ ((pivot-l)/2), pivot, nums);
-        l = pivot+1;
-        quickDivide(l, l+ ((r-l)/2), r, nums);
-    }
-}
 
 void swap(int a, int b, vector<int>& nums){
     int tmp = nums[a];
@@ -318,95 +310,83 @@ void swap(int a, int b, vector<int>& nums){
     nums[b] = tmp;
 }
 
-void quickConquer(int l, int mid, int r, vector<int>& nums){
+void quickConquer(int l, int r, vector<int>& nums){
 
-    printf("mid : %d\n", nums[mid]);
-    int pivot = r;
     int right_most = r-1;
-    int flag = r;
-    //{16,14,5,13, 10, 11,24,12,20,8}
 
-    //{10, 80, 70, 90, 40, 50, 30}
+    for (; l < right_most;) {
+        //cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
 
-    //{10, 80, 30, 90, 50, 70, 40}
-    for (; l < mid or mid < right_most;) {
-        cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
-
-        // l 크다
         if(nums[l] > nums[r]){
-            //r 작다
             if(nums[right_most] < nums[r]){
+
                 swap(l, right_most, nums);
 
             }else{
-                //r 크
                 right_most--;
                 continue;
-                //swap(mid, l, nums);
             }
 
         }
-        //l 작다
         else{
-            //r 작다
             if(nums[right_most] < nums[r]){
                 l++;
                 continue;
-                //swap(mid, right_most, nums);
             }
-
         }
         l++;right_most--;
-        printList(nums); cout << endl;
+        //cout << "process arr : ";printList(nums); cout << endl;
 
     }
 
+    if(nums[r] < nums[l]){ swap(r, l, nums);}
 
+    //printList(nums);
+    cout << endl;
+}
 
-swap(r, mid, nums);
-printList(nums);
-//cout <<endl;
-
-    //    if(nums[mid])
-//    int tmp = nums[mid];
-//    nums[mid] = nums[pivot];
-//    nums[pivot] = tmp;
-//    printList(nums); cout <<endl;
+void quickDivide(int l, int pivot, int r, vector<int>& nums){
+    cout << "l : " << l << " pivot: " << pivot << " r: " << r << endl;
+    quickConquer(l, r, nums);
+    if(l<pivot){
+        quickDivide(l, l+ ((pivot-l)/2), pivot, nums);
+        l = pivot+1;
+        quickDivide(l, l+ ((r-l)/2), r, nums);
+    }
 
 }
 
 int main() {
-    //                  0    1   2   3   4   5   6    7  8 9
-    vector<int> nums = {10, 80, 30, 90, 50, 70, 40};//{16,14,20,13, 10,  5,24,12,8,11};   {16,14,5,13, 10, 11,24,12,20,8}
-    // 9 12 2 17 1 6
+    //                   0   1   2   3   4   5   6
+    vector<int> nums = {30, 10, 50, 80, 40, 90, 70};
 
-    // 5 8 10 11 12 13 14 16 20 24
+    int num;
+    scanf("%d", &num);
+    vector<int> v (num);
 
-//    10, 80, 30, 90, 40, 50, 70
-//    //{16,14,5,13, 10, 11,24,12,20,8}
-//        /                        /
-//    //{8,14,5,13, 10, 11,24,12,20,16}
-//          /                  /
-//    //{8,12,5,13, 10, 11,24,16,20,14}
-//            /             /
-//    //{8,12,5,13, 10, 11,24,16,20,14}
-//               /       /
-//    //{8,12,5,11, 10, 14,24,16,20,13}
+    for (int i = 0; i < num; ++i) {
+        int n;
+        scanf("%d", &n);
+        v[i] = n;
+    }
 
-    int len = nums.size();
+    int len = v.size();
     int l = 0;
     int r = len-1;
     int mid = l+ ((r-l)/2);
 
-    quickConquer(l, mid, r, nums);
-    //quickDivide(l, mid, r, nums);
+    quickDivide(l, mid, r, v);
+    quickConquer(l, r, v);
 
+
+    for (int i = 0; i < num; ++i) {
+        printf("%d\n", v[i]);
+    }
+
+
+    //printList(nums);
     return 0;
 }
-
-
-
-
 
 
 
