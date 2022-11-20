@@ -267,24 +267,11 @@ public:
 
     end:
         return answer;
-    //printList(answer);
-
 
 
     }
 };
 
-
-
-int square(int num, int multiple){
-
-    int value = 1;
-
-    for(int i=0; i<multiple; i++){
-        value = value*num;
-    }
-    return value;
-}
 
 void printList(vector<int>& nums){
     int len = nums.size();
@@ -303,6 +290,73 @@ void printArray(int arr[], int len){
 
 }
 
+int square(int num, int multiple){
+
+    int value = 1;
+
+    for(int i=0; i<multiple; i++){
+        value = value*num;
+    }
+    return value;
+}
+
+class QuickSort{
+public:
+
+    static void swap(int a, int b, vector<int>& nums){
+        int tmp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tmp;
+    }
+
+    static int quickConquer(int l, int r, vector<int>& nums){
+
+        int right_most = r-1;
+
+        for (; l < right_most;) {
+
+            if(nums[l] > nums[r]){
+                if(nums[right_most] < nums[r]){
+
+                    swap(l, right_most, nums);
+
+                }else{
+                    right_most--;
+                    continue;
+                }
+
+            }
+            else{
+                if(nums[right_most] < nums[r]){
+                    l++;
+                    continue;
+                }
+            }
+            l++;right_most--;
+
+        }
+
+        if(nums[r] < nums[l]){ swap(r, l, nums);}
+
+        return l;
+
+    }
+
+    static void quickDivide(int l, int r, vector<int>& nums){
+        int mid = quickConquer(l, r, nums);
+        if(l==r){return;}
+
+        if(l<mid){
+            quickDivide(l, mid, nums);
+            quickDivide(mid+1, r, nums);
+        }else if(l==mid){ quickDivide(mid+1, r, nums);}
+        else if(r==mid){ quickDivide(l, mid, nums); }
+
+    }
+
+};
+
+
 
 void swap(int a, int b, vector<int>& nums){
     int tmp = nums[a];
@@ -310,84 +364,36 @@ void swap(int a, int b, vector<int>& nums){
     nums[b] = tmp;
 }
 
-int quickConquer(int l, int r, vector<int>& nums){
 
-    int right_most = r-1;
-
-    for (; l < right_most;) {
-        cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
-
-        if(nums[l] > nums[r]){
-            if(nums[right_most] < nums[r]){
-
-                swap(l, right_most, nums);
-
-            }else{
-                right_most--;
-                continue;
-            }
-
-        }
-        else{
-            if(nums[right_most] < nums[r]){
-                l++;
-                continue;
-            }
-        }
-        l++;right_most--;
-        cout << "process arr : ";printList(nums); cout << endl;
-
-    }
-
-    if(nums[r] < nums[l]){ swap(r, l, nums);}
-
-    printList(nums);
-    cout << endl;
-    return l;
-
-}
-
-void quickDivide(int l, int r, vector<int>& nums){
-    cout << "l : " << l << " r: " << r << endl;
-    int mid = quickConquer(l, r, nums);
-    if(l==r){return;}
-
-    if(l<mid){
-        quickDivide(l, mid, nums);
-        quickDivide(mid+1, r, nums);
-    }else if(l==mid){ quickDivide(mid+1, r, nums);}
-    else if(r==mid){ quickDivide(l, mid, nums); }
-
-}
 
 int main() {
-    //                   0  1   2  3   4    5
-    vector<int> nums = {8, 21, 45, 5, 423, 444};
+//                  0  1  2  3  4   5  6 7 8  9  10
+    vector<int> nums = {0,1,0,3,12};//, 0, 0, 3, 2, 21, 6,8,0,31,45};
 
-//    int num;
-//    scanf("%d", &num);
-//    vector<int> v (num);
-//
-//    for (int i = 0; i < num; ++i) {
-//        int n;
-//        scanf("%d", &n);
-//        v[i] = n;
-//    }
+    int r = nums.size();
+    int l =0;
+    int last = 0;
 
-    int len = nums.size();
-    int l = 0;
-    int r = len-1;
-    int mid = l+ ((r-l)/2);
+    for (; l < r; ) {
+        //cout << "l : " <<l << " r : " << r << endl;
+        if(nums[l]==0 && nums[r] !=0){
+            swap(l,r,nums);
+            last = r;
+            cout << "last one : " << r << endl;
+            l++,r--;
+        }else if(nums[l]==0 && nums[r] ==0){ r--; }
+        else if(nums[l]!=0 && nums[r] ==0){ l++;}
+        else if(nums[l]!=0 && nums[r] !=0){ l++;}
+        printList(nums);
+        cout << endl;
+    }
+    if(l==r){last = l;}
+    QuickSort qs;
+    qs.quickDivide(0,(last-1), nums);
 
-    quickDivide(l, r, nums);
+
     printList(nums);
 
-//    for (int i = 0; i < num; ++i) {
-//        printf("%d\n", v[i]);
-//    }
-
-
-    //
     return 0;
 }
 
