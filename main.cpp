@@ -310,12 +310,12 @@ void swap(int a, int b, vector<int>& nums){
     nums[b] = tmp;
 }
 
-void quickConquer(int l, int r, vector<int>& nums){
+int quickConquer(int l, int r, vector<int>& nums){
 
     int right_most = r-1;
 
     for (; l < right_most;) {
-        //cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
+        cout << "l : " << nums[l] << " flag: " << nums[r] << " right_most: " << nums[right_most] << endl;
 
         if(nums[l] > nums[r]){
             if(nums[right_most] < nums[r]){
@@ -335,56 +335,59 @@ void quickConquer(int l, int r, vector<int>& nums){
             }
         }
         l++;right_most--;
-        //cout << "process arr : ";printList(nums); cout << endl;
+        cout << "process arr : ";printList(nums); cout << endl;
 
     }
 
     if(nums[r] < nums[l]){ swap(r, l, nums);}
 
-    //printList(nums);
+    printList(nums);
     cout << endl;
+    return l;
+
 }
 
-void quickDivide(int l, int pivot, int r, vector<int>& nums){
-    cout << "l : " << l << " pivot: " << pivot << " r: " << r << endl;
-    quickConquer(l, r, nums);
-    if(l<pivot){
-        quickDivide(l, l+ ((pivot-l)/2), pivot, nums);
-        l = pivot+1;
-        quickDivide(l, l+ ((r-l)/2), r, nums);
-    }
+void quickDivide(int l, int r, vector<int>& nums){
+    cout << "l : " << l << " r: " << r << endl;
+    int mid = quickConquer(l, r, nums);
+    if(l==r){return;}
+
+    if(l<mid){
+        quickDivide(l, mid, nums);
+        quickDivide(mid+1, r, nums);
+    }else if(l==mid){ quickDivide(mid+1, r, nums);}
+    else if(r==mid){ quickDivide(l, mid, nums); }
 
 }
 
 int main() {
-    //                   0   1   2   3   4   5   6
-    vector<int> nums = {30, 10, 50, 80, 40, 90, 70};
+    //                   0  1   2  3   4    5
+    vector<int> nums = {8, 21, 45, 5, 423, 444};
 
-    int num;
-    scanf("%d", &num);
-    vector<int> v (num);
+//    int num;
+//    scanf("%d", &num);
+//    vector<int> v (num);
+//
+//    for (int i = 0; i < num; ++i) {
+//        int n;
+//        scanf("%d", &n);
+//        v[i] = n;
+//    }
 
-    for (int i = 0; i < num; ++i) {
-        int n;
-        scanf("%d", &n);
-        v[i] = n;
-    }
-
-    int len = v.size();
+    int len = nums.size();
     int l = 0;
     int r = len-1;
     int mid = l+ ((r-l)/2);
 
-    quickDivide(l, mid, r, v);
-    quickConquer(l, r, v);
+    quickDivide(l, r, nums);
+    printList(nums);
+
+//    for (int i = 0; i < num; ++i) {
+//        printf("%d\n", v[i]);
+//    }
 
 
-    for (int i = 0; i < num; ++i) {
-        printf("%d\n", v[i]);
-    }
-
-
-    //printList(nums);
+    //
     return 0;
 }
 
