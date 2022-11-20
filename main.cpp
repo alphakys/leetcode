@@ -368,9 +368,11 @@ void swap(int a, int b, vector<int>& nums){
 
 int main() {
 //                  0  1  2  3  4   5  6 7 8  9  10
-    vector<int> nums = {0,1,0,3,12};//, 0, 0, 3, 2, 21, 6,8,0,31,45};
+    vector<int> nums = {0,0, 0, 0, 3, 2, 0, 6,8,0,31,45};
 
-    int r = nums.size();
+    int r = nums.size()-1;
+
+    if(r==0){ printList(nums); return 0;}
     int l =0;
     int last = 0;
 
