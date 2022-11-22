@@ -379,7 +379,7 @@ public:
 
                 if(nums[r]!=0){
 
-                    swap(r, left_most,nums); r--;
+                    swap(r, left_most,nums); left_most++,r--;
                     //printList(nums); cout << endl;
                 }
                 else{ r--; }
@@ -450,19 +450,53 @@ void swap(int a, int b, vector<int>& nums){
 
 
 int main() {
-    //                  0  1  2  3  4  5  6  7  8  9  10 11  12
-    vector<int> nums = {0,1,0,3,12};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
-    int l =0;
-    int r = nums.size()-1;
+    //                  0     1  2 3 4 5   6   7       8        9     10 11  12
+    vector<int> nums = {5,25,75};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
 
-    if(r==0){ return 0;}
-    while(nums[l] ==0 && l<r){ l++; }
-    cout << l << " " << nums[l] << endl;
-    swap(0,l,nums);
-    cout << "swap : "; printList(nums); cout << endl;
-    l = 0;
-    MoveToZeroes mz;
-    mz.quickDivide(l, r, nums);
+    // 생각 1. 두 수의 합이 target number가 되어야 한다는 말은 곧 두 수 모두 target 보다 작아야 한다는 점을 의미한다.
+    //
+    int r = nums.size()-1;
+    if(r==1){ printList(nums);}
+    int l = 0;
+    int pivot = r;
+    int target = 100;
+
+    for (int i=0; i<5;i++) {
+        cout << "l :  " << l << " r : " << r << endl;
+        if(nums[r]>target){ r--; }
+        if(nums[l]>target){ r = l-1; }
+
+        if(nums[r]+nums[l]==target){
+            //cout << nums[r] << " , " << nums[l];
+            printf("%d, %d\n", l+1, r+1);
+            break;
+        }
+        else if(nums[r]+nums[l]> target){ r--; continue;}
+        else{ l++;}
+
+    }
+
+
+    //cout << "answer : " ; printList(nums);
+
+
+
+    return 0;
+}
+
+// #Move To zeroes code
+
+//    int l =0;
+//    int r = nums.size()-1;
+//
+//    if(r==0){ return 0;}
+//    while(nums[l] ==0 && l<r){ l++; }
+//    cout << l << " " << nums[l] << endl;
+//    swap(0,l,nums);
+//    cout << "swap : "; printList(nums); cout << endl;
+//    l = 0;
+//    MoveToZeroes mz;
+//    mz.quickDivide(l, r, nums);
 
 
 //
@@ -490,12 +524,6 @@ int main() {
 //    if(l==r){last = l;}
 //    QuickSort qs;
 //    qs.quickDivide(0,(last-1), nums);
-
-
-    cout << "answer : " ; printList(nums);
-
-    return 0;
-}
 
 
 
