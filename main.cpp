@@ -367,60 +367,75 @@ public:
 
     // 0   1  2  3  4  5  6  7  8  9  10 11 12
     //{0, 56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 45, 1};
-    //{45,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 1};
+    //{56, 0, 5, 0, 0, 3, 2, 0, 6, 8, 0, 45, 1};
     int quickConquer(int l, int r, vector<int>& nums){
 
-        int right_most = r-1;
+        int left_most = l+1;
 
-        for (; l < right_most;) {
-            cout << "1l : " << l << " right : " << right_most << endl;
-            if(nums[l]==0){
+        for (; left_most < r;) {
+            printf("[left_most -> %d, v -> %d], [r -> %d, v -> %d]\n", left_most, nums[left_most], r, nums[r]);
+            cout << "전 : "; printList(nums); cout << endl;
+            if(nums[left_most]==0){
 
-                if(nums[right_most]!=0){
-                    cout << "2l : " << l << " right : " << right_most << endl;
-                    swap(l, right_most,nums); right_most--;
-                    printList(nums); cout << endl;
+                if(nums[r]!=0){
+
+                    swap(r, left_most,nums); r--;
+                    //printList(nums); cout << endl;
                 }
-                else{ right_most--; }
+                else{ r--; }
+                cout << "후 : "; printList(nums); cout << endl;
+                continue;
             }
 
-            if(nums[l] > nums[r]){
-                if(nums[right_most] < nums[r]){
-
-                    swap(l, right_most, nums);
+            if(nums[left_most] > nums[l]){
+                if(nums[l] < nums[r]){
+                    if(nums[left_most]!=0){ r--;}
+                    else{
+                        swap(r, left_most,nums);
+                        r--;
+                        //continue;
+                    }
 
                 }else{
-                    right_most--;
-                    continue;
+                    swap(r, left_most,nums); left_most++; r--;
+                    //continue;
                 }
 
             }
             else{
-                if(nums[right_most] < nums[r]){
-                    l++;
-                    continue;
-                }
+                if(nums[r]==0){ r--;
+                    continue;}
+
+                if(nums[r] < nums[l]){
+                    left_most++;
+                    //continue;
+                }else{ left_most++; r--;}
             }
-            l++;right_most--;
-            printList(nums); cout << endl;
+            //
+            cout << "후 : "; printList(nums); cout << endl;
             //break;
         }
 
-        if(nums[r] < nums[l]){ swap(r, l, nums); }
-        return l;
+        if(nums[left_most] < nums[l]){
+            if(nums[left_most] !=0){ swap(left_most, l, nums);}
+        }
+        //cout << left_most;
+        return left_most;
     }
 
     void quickDivide(int l, int r, vector<int>& nums){
         int mid = quickConquer(l, r, nums);
 
-        if(l==r){return;}
+        if(mid==r){return;}
 
         if(l<mid){
-            quickDivide(l, mid, nums);
-
+            if(nums[l]!=0){ quickDivide(l, mid, nums);}
+            //quickDivide(l, mid, nums);
+            if(nums[mid+1]!=0){ quickDivide(mid+1, r, nums);}
+            //quickDivide(mid+1, r, nums);
         }
-        else if(l==mid){ quickDivide(mid+1, r, nums);}
-        else if(r==mid){ quickDivide(l, mid, nums); }
+        else if(l==mid){ if(nums[mid+1]!=0){ quickDivide(mid+1, r, nums);} }
+        else if(r==mid){ if(nums[l]!=0){ quickDivide(l, mid, nums);} }
 
     }
 
@@ -436,15 +451,18 @@ void swap(int a, int b, vector<int>& nums){
 
 int main() {
     //                  0  1  2  3  4  5  6  7  8  9  10 11  12
-    vector<int> nums = {0,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 45, 1};
+    vector<int> nums = {0,1,0,3,12};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
     int l =0;
     int r = nums.size()-1;
 
-    while(nums[r] ==0){ r--; }
-
+    if(r==0){ return 0;}
+    while(nums[l] ==0 && l<r){ l++; }
+    cout << l << " " << nums[l] << endl;
+    swap(0,l,nums);
+    cout << "swap : "; printList(nums); cout << endl;
+    l = 0;
     MoveToZeroes mz;
     mz.quickDivide(l, r, nums);
-
 
 
 //
@@ -474,7 +492,7 @@ int main() {
 //    qs.quickDivide(0,(last-1), nums);
 
 
-    printList(nums);
+    cout << "answer : " ; printList(nums);
 
     return 0;
 }
