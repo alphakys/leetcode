@@ -450,29 +450,30 @@ void swap(int a, int b, vector<int>& nums){
 
 
 int main() {
-    //                  0     1  2 3 4 5   6   7       8        9     10 11  12
-    vector<int> nums = {5,25,75};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
+    //                  0  1 2  3 4 5   6   7       8        9     10 11  12
+    vector<int> nums = {-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
 
+    //16
+    //{-2,-1,5,11,44,66}
     // 생각 1. 두 수의 합이 target number가 되어야 한다는 말은 곧 두 수 모두 target 보다 작아야 한다는 점을 의미한다.
     //
     int r = nums.size()-1;
     if(r==1){ printList(nums);}
     int l = 0;
     int pivot = r;
-    int target = 100;
+    int target = 7;
 
-    for (int i=0; i<5;i++) {
+    for (;;) {
         cout << "l :  " << l << " r : " << r << endl;
-        if(nums[r]>target){ r--; }
-        if(nums[l]>target){ r = l-1; }
 
+        //if(l==r){ l++; r = pivot;}
         if(nums[r]+nums[l]==target){
             //cout << nums[r] << " , " << nums[l];
             printf("%d, %d\n", l+1, r+1);
             break;
         }
         else if(nums[r]+nums[l]> target){ r--; continue;}
-        else{ l++;}
+        else{ l++; r = pivot; }
 
     }
 
@@ -592,10 +593,6 @@ void twoPointers(vector<int> nums){
 
     printList(arr);
 }
-
-
-
-
 
 
 
