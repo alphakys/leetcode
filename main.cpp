@@ -237,42 +237,6 @@ public:
 };
 
 
-
-class TwoSumII{
-public:
-    vector<int> search(vector<int>& numbers, int n) {
-
-    vector<int> answer(2,0);
-    int len = numbers.size();
-
-    int target = 200;
-    int end = len;
-    int duplicate = 0;
-
-    for (int i = 0; i < len and (numbers[i]<=target or numbers[i]==0); i++) {
-        cout << i <<" , " << end << endl;
-        int sum = 0;
-        duplicate = numbers[i]+numbers[i+1];
-        for (int j = i+1; j < end; ++j) {
-            //cout << j <<" , "<< endl;
-            sum= numbers[i]+numbers[j];
-            if(sum == duplicate){}
-
-            if(sum==target){
-                answer[0] = i+1; answer[1] = j+1;goto end;}
-            else if(sum>target){ end = j;break;}
-        }
-
-    }
-
-    end:
-        return answer;
-
-
-    }
-};
-
-
 void printList(vector<int>& nums){
     int len = nums.size();
 
@@ -449,41 +413,121 @@ void swap(int a, int b, vector<int>& nums){
 }
 
 
-int main() {
-    //                  0  1 2  3 4 5   6   7       8        9     10 11  12
-    vector<int> nums = {-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
+class TwoSumII{
+public:
 
-    //16
-    //{-2,-1,5,11,44,66}
-    // 생각 1. 두 수의 합이 target number가 되어야 한다는 말은 곧 두 수 모두 target 보다 작아야 한다는 점을 의미한다.
-    //
-    int r = nums.size()-1;
-    if(r==1){ printList(nums);}
-    int l = 0;
-    int pivot = r;
-    int target = 7;
+    vector<int> conquer(int left, int mid, int right, int target, vector<int>& nums){
 
-    for (;;) {
-        cout << "l :  " << l << " r : " << r << endl;
+        int idx = left;
+        int pivot = mid+1;
+        vector<int> answer(2,0);
+        int flag = 0;
 
-        //if(l==r){ l++; r = pivot;}
-        if(nums[r]+nums[l]==target){
-            //cout << nums[r] << " , " << nums[l];
-            printf("%d, %d\n", l+1, r+1);
-            break;
+        while(flag==0 && idx <= mid){
+
+            for (; pivot <= right; ++pivot) {
+
+                if(nums[idx] + nums[pivot] ==target){
+                    //cout << "answer : " << idx+1 << ", " << pivot+1 << endl;
+                    answer[0] = idx+1; answer[1] = pivot+1;
+
+                    flag = 1;
+                    break;
+
+                }
+            }
+            idx++;
+            pivot = mid+1;
         }
-        else if(nums[r]+nums[l]> target){ r--; continue;}
-        else{ l++; r = pivot; }
 
+        return answer;
     }
 
 
-    //cout << "answer : " ; printList(nums);
+
+    vector<int> mergeSort(int left, int mid, int right, int target, vector<int>& nums){
+        //cout << "l " << left << " m "<< mid << " r "<< right <<endl;
+        vector<int> answer(2);
+        if(left <mid){
+
+            answer = mergeSort(left, (left+mid)/2, mid, target, nums);
+            if(answer[0]!=0){ return answer;}
+
+            answer = mergeSort(mid+1, ((mid+1)+right)/2, right, target, nums);
+            if(answer[0]!=0){ return answer;}
+
+        }
+        return conquer(left, mid, right, target, nums);
+
+    }
+};
 
 
+int main() {
+    //                  0  1  2 3 4  5   6   7       8        9     10 11  12
+    vector<int> nums = {3,3,5,8,18,21,22,22,22,24,26};//{3,3,5,8,18,21,22,22,22,24,26,28,29,31,31,34,37,37,40,43,43,43,44,47,48,51,51,51,52,54,55,56,59,59,60,74,74,76,76,81,82,82,82,85,89,91,91,94,99,101,101,106,116,118,121,126,127,128,128,128,131,134,135,138,140,143,145,151,152,153,154,156,158,158,158,160,169,173,174,177,178,180,189,190,190,191,191,196,197,203,203,206,206,206,208,210,212,215,216,218,218,219,223,225,227,229,232,232,233,234,235,235,236,237,238,239,245,249,250,251,254,254,256,260,261,262,270,271,271,274,275,284,285,286,290,290,291,292,292,293,293,293,295,299,300,304,304,305,310,313,313,315,322,326,327,329,334,336,337,339,339,340,341,343,344,347,347,356,356,359,359,361,364,364,368,368,369,376,378,380,380,380,386,387,389,391,391,397,399,404,405,413,415,418,418,423,426,428,429,430,432,434,437,439,459,460,461,461,463,472,479,480,484,484,486,487,492,494,498,499,500,501,501,504,505,505,507,513,517,517,519,519,522,525,525,529,530,530,533,536,537,538,539,542,544,553,557,561,561,564,567,568,568,570,570,572,574,575,575,579,580,581,582,590,591,594,594,597,600,605,607,608,611,614,615,615,619,621,622,623,626,627,628,630,631,632,634,638,640,641,642,648,648,649,659,662,668,673,678,678,682,682,683,683,686,686,687,691,692,693,698,700,700,706,711,711,712,714,714,718,722,727,730,730,733,733,741,744,745,747,749,754,755,755,758,760,762,763,764,769,770,771,771,776,777,784,785,789,790,792,795,795,796,797,798,806,806,806,809,812,813,815,819,820,823,827,830,837,840,843,848,850,851,851,852,857,858,858,859,861,863,866,869,869,873,874,874,883,885,887,889,891,893,899,901,903,905,905,905,909,912,917,919,920,921,922,926,935,940,941,944,945,
+    // 946,947,948,950,950,951,952,956,956,959,962,964,965,968,970,971,971,972,973,976,978,982,983,985,985,988,989,991,994,994,995,995,997,997};//,56, 5, 0, 0, 3, 2, 0, 6, 8, 0, 0, 0};
+
+    int r = nums.size()-1;
+    int l = 0;
+    int mid = l+ (r-l)/2;
+    int target = 6;
+
+    vector<int> answer(2);
+
+    if(r+1<4){
+        int pivot = 1;
+        while(l <= 1){
+
+            for (;  pivot <= r; ++pivot) {
+                //cout << l << pivot <<endl;
+                if((nums[l] + nums[pivot]) == target){
+
+                    answer[0] = l+1; answer[1] = pivot+1;
+                    break;
+                }
+            }
+            l++;
+            pivot = 2;
+        }
+    }
+    else{
+        TwoSumII ts;
+        answer = ts.mergeSort(l, mid,r, target, nums);
+        printList(answer);
+    }
 
     return 0;
 }
+
+
+
+
+//    if(r==1){ printList(nums);}
+//    int l = 0;
+//    int pivot = r;
+//    int target = 100;
+//
+//    for (int i=0; i<5;i++) {
+//        cout << "l :  " << l << " r : " << r << endl;
+//        if(nums[r]>target){ r--; }
+//        if(nums[l]>target){ r = l-1; }
+//
+//        if(nums[r]+nums[l]==target){
+//            //cout << nums[r] << " , " << nums[l];
+//            printf("%d, %d\n", l+1, r+1);
+//            break;
+//        }
+//        else if(nums[r]+nums[l]> target){ r--; continue;}
+//        else{ l++;}
+//
+//    }
+
+
+
+
+
+
 
 // #Move To zeroes code
 
@@ -593,6 +637,10 @@ void twoPointers(vector<int> nums){
 
     printList(arr);
 }
+
+
+
+
 
 
 
