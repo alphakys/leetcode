@@ -500,20 +500,30 @@ public:
 
 };
 
+typedef struct LinkedList{
+    int value;
+    LinkedList *next;
+
+}LinkedList;
+
 
 int main() {
 
-    string s = "Let's take LeetCode contest";
+    //string s = "Let's take LeetCode contest";
 
-    char s1 = s[0];
-    char s2 = s[1];
+    LinkedList *l1 = new LinkedList();
+    printf("%p\n", l1);
+    LinkedList l2;
+    LinkedList l3;
+    l2.next = &l3;
 
-    printf("%p\n", s[1]);
-    printf("%p\n", s[0]);
+    printf("%p\n", l2);
+    printf("%p\n", l3);
+    printf("%p\n", *(l2.next));
+    //l1.next = l2;
 
     return 0;
 }
-
 
 
 void selectionSort(vector<int> nums){
