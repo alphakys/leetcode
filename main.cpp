@@ -506,21 +506,29 @@ typedef struct LinkedList{
 
 }LinkedList;
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 
 int main() {
 
-    //string s = "Let's take LeetCode contest";
+    ListNode *l = new ListNode(1);
+    ListNode h = *l;
 
-    LinkedList *l1 = new LinkedList();
-    printf("%p\n", l1);
-    LinkedList l2;
-    LinkedList l3;
-    l2.next = &l3;
+    //head는 주소를 가지고 있는 변수(포인터)
+    //*head를 dereferencing 하고 있기 때문에 node 그 자체가 됨.
+    //&head는 포인터의 주소 값을 가지고 있음
+    //
 
-    printf("%p\n", l2);
-    printf("%p\n", l3);
-    printf("%p\n", *(l2.next));
-    //l1.next = l2;
+    printf("%d\n", *l);
+    printf("%d\n", h);
+//    printf("%p\n", );
 
     return 0;
 }
