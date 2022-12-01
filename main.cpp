@@ -513,10 +513,38 @@ struct ListNode {
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+}*start;
 
 
 int main() {
+
+    int arr[] = {1,2,4};
+    int len = size(arr);
+    int a = NULL;
+
+    cout << a;
+
+//    if(NULL == nullptr){
+//        cout << "nul";
+//        printf("%p", nullptr);
+//    }
+
+    //cout << nullptr;
+    //start->val = NULL;
+    //cout << start;
+//    ListNode head;
+//    for (int i = 0; i < len; ++i) {
+//        ListNode *n = head.next;
+//        if(n == nullptr){
+//            head.val = arr[i];
+//            n = new ListNode();
+//
+//        }else{
+//            head.
+//        }
+//
+//
+//    }
 
     ListNode *l = new ListNode(1);
     ListNode h = *l;
@@ -526,8 +554,8 @@ int main() {
     //&head는 포인터의 주소 값을 가지고 있음
     //
 
-    printf("%d\n", *l);
-    printf("%d\n", h);
+    //printf("%d\n", *l);
+    //printf("%d\n", h);
 //    printf("%p\n", );
 
     return 0;
