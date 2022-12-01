@@ -516,47 +516,29 @@ struct ListNode {
 }*start;
 
 
+struct Node {
+    int val = 1;
+    Node* next;
+//
+//    Node(){
+//        val =2;
+//        next = nullptr;
+//    }
+//
+//    Node(Node* n) : val(10){}
+//
+//    Node(int a){
+//        val = a;
+//        next = nullptr;
+//    }
+};
+
 int main() {
 
     int arr[] = {1,2,4};
     int len = size(arr);
-    int a = NULL;
 
-    cout << a;
 
-//    if(NULL == nullptr){
-//        cout << "nul";
-//        printf("%p", nullptr);
-//    }
-
-    //cout << nullptr;
-    //start->val = NULL;
-    //cout << start;
-//    ListNode head;
-//    for (int i = 0; i < len; ++i) {
-//        ListNode *n = head.next;
-//        if(n == nullptr){
-//            head.val = arr[i];
-//            n = new ListNode();
-//
-//        }else{
-//            head.
-//        }
-//
-//
-//    }
-
-    ListNode *l = new ListNode(1);
-    ListNode h = *l;
-
-    //head는 주소를 가지고 있는 변수(포인터)
-    //*head를 dereferencing 하고 있기 때문에 node 그 자체가 됨.
-    //&head는 포인터의 주소 값을 가지고 있음
-    //
-
-    //printf("%d\n", *l);
-    //printf("%d\n", h);
-//    printf("%p\n", );
 
     return 0;
 }
