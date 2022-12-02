@@ -533,15 +533,40 @@ struct Node {
 //    }
 };
 
+struct DoubleNode{
+    int val;
+    DoubleNode* head;
+    DoubleNode* tail;
+
+    DoubleNode() : val(), tail(nullptr) {}
+    DoubleNode(DoubleNode* node) : val(), tail(node) {}
+    DoubleNode(int n, DoubleNode* node) : val(n), tail(node) {}
+
+};
+
 int main() {
 
     int arr[] = {1,2,4};
     int len = size(arr);
-
+    struct DoubleNode* head = nullptr;
 
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void selectionSort(vector<int> nums){
