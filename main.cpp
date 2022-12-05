@@ -500,11 +500,7 @@ public:
 
 };
 
-typedef struct LinkedList{
-    int value;
-    LinkedList *next;
 
-}LinkedList;
 
 struct ListNode {
     int val;
@@ -516,23 +512,6 @@ struct ListNode {
 }*start;
 
 
-struct Node {
-    int val = 1;
-    Node* next;
-//
-//    Node(){
-//        val =2;
-//        next = nullptr;
-//    }
-//
-//    Node(Node* n) : val(10){}
-//
-//    Node(int a){
-//        val = a;
-//        next = nullptr;
-//    }
-};
-
 struct DoubleNode{
     int val;
     DoubleNode* head;
@@ -541,6 +520,98 @@ struct DoubleNode{
     DoubleNode() : val(), tail(nullptr) {}
     DoubleNode(DoubleNode* node) : val(), tail(node) {}
     DoubleNode(int n, DoubleNode* node) : val(n), tail(node) {}
+
+};
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = nullptr;
+    }
+
+}Node;
+
+class LinkedList{
+
+    private:
+        Node *head;
+
+    public:
+        LinkedList(){ head = nullptr; }
+
+        Node *insertAtBegining(Node *head, int x) {
+            // Your code here
+            if(head ==nullptr) { head = new Node(x); return head;}
+            else{
+                Node *n = new Node(x);
+                n->next = head;
+                return n;
+            }
+
+        }
+
+        //Function to insert a node at the end of the linked list.
+        Node *insertAtEnd(Node *head, int x)  {
+            // Your code here
+            if(head ==nullptr) { head = new Node(x); return head;}
+            else{
+
+                Node* curr = head;
+                while(curr->next != nullptr){
+                    curr = curr->next;
+                }
+                curr->next = new Node(x);
+
+                return head;
+            }
+
+        }
+
+        int getCount(struct Node* head){
+
+            int len = 1;
+            while(head->next != nullptr){
+                head = head->next;
+                len++;
+            }
+            return len;
+        }
+
+        void display(Node *head)
+        {
+            Node* n = head;
+            while(n != nullptr){
+                printf("%d ", n->data);
+                n = n->next;
+            }
+
+        }
+
+        int GetNth(struct Node* head, int index){
+            // Code here
+
+            Node *curr = head;
+            index--;
+            while(curr!=nullptr){
+                if(index ==0){
+                    return curr->data;
+                }
+                else{
+                    curr = curr->next;
+                    index--;
+
+                }
+            }
+
+
+        }
+
+
+
+
 
 };
 
