@@ -542,6 +542,31 @@ class LinkedList{
     public:
         LinkedList(){ head = nullptr; }
 
+
+        //Function to insert a node in the middle of the linked list.
+        Node* insertInMiddle(Node* head, int x)
+        {
+            // Code here
+            int cnt = getCount(head);
+
+            int middle = (cnt/2)+(cnt%2);
+
+            Node* curr = head;
+            Node* prevNode;
+
+            while(curr!=nullptr && middle >0){
+                prevNode = curr;
+                curr = curr->next;
+                middle--;
+            }
+
+            Node* n = new Node(x);
+            prevNode->next = n;
+            n->next = curr;
+            return head;
+
+        }
+
         Node *insertAtBegining(Node *head, int x) {
             // Your code here
             if(head ==nullptr) { head = new Node(x); return head;}
@@ -609,7 +634,11 @@ class LinkedList{
 
         }
 
-
+        int isLengthEvenOrOdd(struct Node* head)
+        {
+            //Code here
+            return (getCount(head)%2);
+        }
 
 
 
