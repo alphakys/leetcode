@@ -2,6 +2,7 @@
 #include <vector>
 #include <array>
 #include<cstdlib>
+#include <cmath>
 
 using namespace std;
 
@@ -598,8 +599,10 @@ class LinkedList{
         int getCount(struct Node* head){
 
             int len = 1;
-            while(head->next != nullptr){
-                head = head->next;
+
+            Node* n = head;
+            while(n->next != nullptr){
+                n = n->next;
                 len++;
             }
             return len;
@@ -662,6 +665,22 @@ class LinkedList{
 
             return sum;
         }
+
+        int fractional_node(struct Node *head, int k)
+        {
+            // your code here
+            int element = ceil((double)getCount(head) / (double)k);
+
+            Node* curr = head;
+            while(element-- > 1){
+
+                curr = curr->next;
+            }
+
+            return curr->data;
+        }
+
+
 
 };
 
