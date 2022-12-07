@@ -640,6 +640,25 @@ class LinkedList{
             return (getCount(head)%2);
         }
 
+        int sumOfLastN_Nodes(struct Node* head, int n)
+        {
+
+            // Code here
+            Node* curr = head;
+            vector<int> arr;
+
+            while(curr != nullptr){
+                arr.push_back(curr->data);
+                curr = curr->next;
+            }
+
+            // int len = arr.size();
+            // cout << len;
+            // for(int i=0; i< len; i++){
+            //     cout << arr[i] << " ";
+            // }
+            return 1;
+        }
 
 
 };
@@ -653,7 +672,6 @@ int main() {
 
     return 0;
 }
-
 
 
 
