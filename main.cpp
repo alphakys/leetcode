@@ -640,9 +640,9 @@ class LinkedList{
             return (getCount(head)%2);
         }
 
+
         int sumOfLastN_Nodes(struct Node* head, int n)
         {
-
             // Code here
             Node* curr = head;
             vector<int> arr;
@@ -652,14 +652,16 @@ class LinkedList{
                 curr = curr->next;
             }
 
-            // int len = arr.size();
-            // cout << len;
-            // for(int i=0; i< len; i++){
-            //     cout << arr[i] << " ";
-            // }
-            return 1;
-        }
+            int len = arr.size();
 
+            int sum = 0;
+
+            for(int i=len-1; n-->0; i--){
+                sum += arr[i];
+            }
+
+            return sum;
+        }
 
 };
 
