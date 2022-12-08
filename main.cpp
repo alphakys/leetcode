@@ -513,17 +513,6 @@ struct ListNode {
 }*start;
 
 
-struct DoubleNode{
-    int val;
-    DoubleNode* head;
-    DoubleNode* tail;
-
-    DoubleNode() : val(), tail(nullptr) {}
-    DoubleNode(DoubleNode* node) : val(), tail(node) {}
-    DoubleNode(int n, DoubleNode* node) : val(n), tail(node) {}
-
-};
-
 typedef struct Node {
     int data;
     struct Node* next;
@@ -535,6 +524,11 @@ typedef struct Node {
 
 }Node;
 
+
+
+
+
+
 class LinkedList{
 
     private:
@@ -542,7 +536,6 @@ class LinkedList{
 
     public:
         LinkedList(){ head = nullptr; }
-
 
         //Function to insert a node in the middle of the linked list.
         Node* insertInMiddle(Node* head, int x)
@@ -580,7 +573,7 @@ class LinkedList{
         }
 
         //Function to insert a node at the end of the linked list.
-        Node *insertAtEnd(Node *head, int x)  {
+        Node *insertAtEnd(int x)  {
             // Your code here
             if(head ==nullptr) { head = new Node(x); return head;}
             else{
@@ -608,7 +601,7 @@ class LinkedList{
             return len;
         }
 
-        void display(Node *head)
+        void display()
         {
             Node* n = head;
             while(n != nullptr){
@@ -680,15 +673,122 @@ class LinkedList{
             return curr->data;
         }
 
+        int modularNode(int k)
+        {
+            // Code here
+            Node* n = head;
+            int result = NULL;
 
+            int index=1;
+            while(n!= nullptr){
+                //cout << n->data/k << " " << n->data << " "<< n->data%k << endl;
+                if(index++%k ==0){
+                    result= n->data;
+                }
+                n= n->next;
+            }
+
+            if(result ==NULL){
+                return -1;
+            }else{
+                return result;
+            }
+
+        }
+
+};
+
+typedef struct DoubleNode{
+    int data;
+    struct DoubleNode* prev;
+    struct DoubleNode* next;
+
+    DoubleNode(int x){
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+
+}DoubleNode;
+
+
+class DoublyLinkedList{
+
+    private:
+        DoubleNode *head;
+
+    public:
+        DoublyLinkedList(){ head = nullptr; }
+
+        DoublyLinkedList(int x){
+            head = new DoubleNode(x);
+        }
+
+        void addNode(int pos, int data)
+        {
+            // Your code here
+            if(pos==-1){
+                if(head== nullptr){ head = new DoubleNode(data); }
+                else{
+                    DoubleNode *curr = head;
+
+                    while(curr->next != nullptr){
+                        curr = curr->next;
+                    }
+                    DoubleNode *nextNode = curr->next = new DoubleNode(data);
+                    nextNode->prev = curr;
+
+                }
+
+            }else{
+                DoubleNode *n = head;
+
+                while(pos-- > 0){
+                    n = n->next;
+                }
+                DoubleNode *next_swap_node = n->next;
+                n->next = new DoubleNode(data);
+                n->next->next = next_swap_node;
+                n->next->prev = n;
+            }
+
+        }
+
+        void display()
+        {
+            DoubleNode* n = head;
+
+            while(n != nullptr){
+
+                printf("%d ", n->data);
+                n = n->next;
+            }
+
+        }
+
+
+
+};
+
+
+class HashTable{
+
+    public:
+        int numIdenticalPairs(vector<int>& nums) {
+
+
+
+
+            return 0;
+        }
 
 };
 
 int main() {
 
-    int arr[] = {1,2,4};
-    int len = size(arr);
-    struct DoubleNode* head = nullptr;
+    vector<int> nums = {1,2,3,1,1,3};
+
+
 
 
     return 0;
