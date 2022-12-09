@@ -773,23 +773,69 @@ class DoublyLinkedList{
 
 class HashTable{
 
+
     public:
         int numIdenticalPairs(vector<int>& nums) {
 
+            int arr[100] = {0,};
 
+            int len = nums.size();
 
+            for (int i = 0; i < len; ++i) {
+                arr[nums[i]-1]++;
+            }
 
-            return 0;
+            int sum= 0;
+            for (int i = 0; i < 10; ++i) {
+
+                int val = arr[i]-1;
+                int sum_val = 0;
+                while(val > 0){
+                    sum_val+=val--;
+
+                }
+                sum += sum_val;
+            }
+
+            return sum;
         }
 
 };
 
 int main() {
+    int arr[57] = {0,};
 
-    vector<int> nums = {1,2,3,1,1,3};
+    string jewels = "aAB";
+    string stones = "aAAbbbb";
+
+    int cnt = stones.size();
+    for (int j = 0; j < cnt; ++j) {
+        arr[stones[j]-65]++;
+    }
+
+//    for (int j = 0; j < cnt; ++j) {
+//        cout << arr[j] << " ";
+//    }
+
+    int len = jewels.size();
+
+    int sum = 0;
+
+    for (int i = 0; i < cnt; ++i) {
+        cout << arr[jewels[i]-65] << " ";
+        //sum += arr[jewels[i]-65];
+    }
+
+    //cout << sum;
 
 
 
+
+
+//
+//    while(i < len){
+//        jewels[i++];
+//    }
 
     return 0;
 }
