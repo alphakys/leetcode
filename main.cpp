@@ -821,12 +821,12 @@ int main() {
 
     int sum = 0;
 
-    for (int i = 0; i < cnt; ++i) {
-        cout << arr[jewels[i]-65] << " ";
-        //sum += arr[jewels[i]-65];
+    for (int i = 0; i < len; ++i) {
+        //cout << arr[jewels[i]-65] << " ";
+        sum += arr[jewels[i]-65];
     }
 
-    //cout << sum;
+    cout << sum;
 
 
 
