@@ -800,6 +800,28 @@ class HashTable{
             return sum;
         }
 
+        int numJewelsInStones(string jewels, string stones) {
+            int arr[58] = {0,};
+
+            int cnt = stones.size();
+            for (int j = 0; j < cnt; ++j) {
+                arr[stones[j]-65]++;
+            }
+
+            int len = jewels.size();
+
+            int sum = 0;
+
+            for (int i = 0; i < len; ++i) {
+
+                sum += arr[jewels[i]-65];
+            }
+
+            return sum;
+        }
+
+
+
 };
 
 int main() {
