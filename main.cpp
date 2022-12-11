@@ -835,21 +835,25 @@ int main() {
         arr[nums[i]]++;
     }
 
+    vector<int> answer;
+
+    for (int i = 0; i < len; ++i) {
+
+        int sum = 0;
+        for (int j = 0; j < nums[i]; ++j) {
+            sum+=arr[j];
+        }
+        answer.push_back(sum);
+    }
 
 
+    printList(answer); cout << endl;
 
-//    int sum= 0;
-//    for (int i = 0; i < 10; ++i) {
-//
-//        int val = arr[i]-1;
-//        int sum_val = 0;
-//        while(val > 0){
-//            sum_val+=val--;
-//
-//        }
-//        sum += sum_val;
-//    }
+    cout << "size : " << answer.size() << " capacity : " << answer.capacity() << endl;
 
+    answer.shrink_to_fit();
+
+    cout << "size : " << answer.size() << " capacity : " << answer.capacity() << endl;
 
     return 0;
 }
