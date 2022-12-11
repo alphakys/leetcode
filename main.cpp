@@ -824,36 +824,50 @@ class HashTable{
 
 };
 
+typedef struct TreeNode{
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+
+    TreeNode(){
+        left = nullptr;
+        right = nullptr;
+    }
+
+    TreeNode(int x){
+        data = x;
+        left = nullptr;
+        right = nullptr;
+    }
+
+};
+
+class Tree{
+    private:
+        TreeNode *root;
+
+    public:
+
+        Tree(){
+            root = nullptr;
+        }
+
+        void insertNode(){
+
+        }
+};
+
+
+
+
+
 int main() {
 
-    int arr[101] = {0,};
-    vector<int> nums = {8,1,2,2,3};
-
-    int len = nums.size();
-
-    for (int i = 0; i < len; ++i) {
-        arr[nums[i]]++;
-    }
-
-    vector<int> answer;
-
-    for (int i = 0; i < len; ++i) {
-
-        int sum = 0;
-        for (int j = 0; j < nums[i]; ++j) {
-            sum+=arr[j];
-        }
-        answer.push_back(sum);
-    }
+    TreeNode* root = new TreeNode(1);
 
 
-    printList(answer); cout << endl;
 
-    cout << "size : " << answer.size() << " capacity : " << answer.capacity() << endl;
 
-    answer.shrink_to_fit();
-
-    cout << "size : " << answer.size() << " capacity : " << answer.capacity() << endl;
 
     return 0;
 }
