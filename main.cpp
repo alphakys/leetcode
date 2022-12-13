@@ -861,6 +861,60 @@ class Tree{
             //Your code here
         }
 
+        void preorder(TreeNode* root)
+        {
+            TreeNode* parent = root;
+            TreeNode* l_child = root->left;
+            TreeNode* r_child = root->right;
+
+            printf("%d ", parent->data);
+
+            if(l_child !=nullptr){ parent = l_child; l_child = parent->left; preorder(parent); }
+
+            if(r_child !=nullptr){ parent = r_child; r_child = parent->right; preorder(parent); }
+
+        }
+
+        void inOrder(TreeNode* root) {
+
+            TreeNode* parent = root;
+            TreeNode* leftChild = parent->left;
+            TreeNode* rightChild = parent->right;
+
+            if(leftChild !=nullptr){
+                inOrder(leftChild);
+            }
+
+            printf("%d ", parent->data);
+
+            if(rightChild !=nullptr){
+                inOrder(rightChild);
+            }
+
+        }
+
+        void postOrder(TreeNode* root) {
+
+            TreeNode* parent = root;
+            TreeNode* leftChild = parent->left;
+            TreeNode* rightChild = parent->right;
+
+            if(leftChild !=nullptr)
+            {
+                postOrder(leftChild);
+            }
+
+            if(rightChild !=nullptr)
+            {
+                postOrder(rightChild);
+            }
+
+            printf("%d ", parent->data);
+
+        }
+
+
+
 };
 
 
