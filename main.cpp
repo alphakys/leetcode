@@ -919,6 +919,32 @@ class Tree{
 
 
 
+class Stack{
+#define stack_len 1000
+
+private:
+    int arr[stack_len];
+    int top = -1;
+
+public:
+    void push(int x)
+    {
+        arr[++top] = x;
+    }
+
+//Function to remove an item from top of the stack.
+    int pop()
+    {
+        if(top==-1){
+            //error를 return 할 수도 있다.
+            return top;
+        }
+
+        return arr[top--];
+
+    }
+
+};
 
 
 int main() {
