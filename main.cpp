@@ -696,6 +696,57 @@ class LinkedList{
 
         }
 
+
+        void stackPush(int x)
+        {
+            // Your Code
+            Node* n = head;
+
+            if(n==nullptr){
+                n = new Node(x);
+                head = n;
+
+            }
+            else{
+                while(n->next!=nullptr){
+                    n = n->next;
+                }
+
+                n->next = new Node(x);
+
+            }
+
+        }
+
+        //Function to remove an item from top of the stack.
+        int stackPop()
+        {
+            Node* n = head;
+
+            if(n==nullptr){
+                return -1;
+            }else{
+                Node* prevNode = nullptr;
+                while(n->next!=nullptr){
+                    prevNode = n;
+                    n = n->next;
+                }
+
+                int answer = n->data;
+                if(prevNode ==nullptr){
+                    head = nullptr;
+                    return answer;
+                }else{
+                    prevNode->next = nullptr;
+                    delete prevNode->next;
+                }
+
+
+                return answer;
+            }
+
+        }
+
 };
 
 typedef struct DoubleNode{
