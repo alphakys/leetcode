@@ -920,9 +920,9 @@ class Tree{
 
             printf("%d ", parent->data);
 
-            if(l_child !=nullptr){ parent = l_child; l_child = parent->left; preorder(parent); }
+            if(l_child !=nullptr){ preorder(parent); }
 
-            if(r_child !=nullptr){ parent = r_child; r_child = parent->right; preorder(parent); }
+            if(r_child !=nullptr){ preorder(parent); }
 
         }
 
@@ -1000,8 +1000,11 @@ public:
 
 int main() {
 
-    TreeNode* root = new TreeNode(1);
-
+    int a = 2;
+    if(a==1)
+        cout << a;
+    else
+        cout << 123;
     //tree 복습
 
 
