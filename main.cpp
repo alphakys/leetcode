@@ -1007,6 +1007,7 @@ int main() {
         cout << 123;
     //tree 복습
 
+    // django orm date compare completed!!
 
 
     return 0;
