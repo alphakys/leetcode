@@ -964,6 +964,29 @@ class Tree{
 
         }
 
+        int countLeaves(Node* root)
+        {
+            // Your code here
+            Node* parent = root;
+            Node* l_child = parent->left;
+            Node* r_child = parent->right;
+
+            int answer = 0;
+
+            if(l_child ==nullptr and r_child ==nullptr)
+                return 1;
+
+            if(l_child !=nullptr){
+                answer += countLeaves(l_child);
+            }
+
+            if(r_child !=nullptr){
+                answer += countLeaves(r_child);
+            }
+
+            return answer;
+
+        }
 
 
 };
