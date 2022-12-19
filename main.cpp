@@ -964,12 +964,12 @@ class Tree{
 
         }
 
-        int countLeaves(Node* root)
+        int countLeaves(TreeNode* root)
         {
             // Your code here
-            Node* parent = root;
-            Node* l_child = parent->left;
-            Node* r_child = parent->right;
+            TreeNode* parent = root;
+            TreeNode* l_child = parent->left;
+            TreeNode* r_child = parent->right;
 
             int answer = 0;
 
@@ -988,6 +988,25 @@ class Tree{
 
         }
 
+        int getSize(TreeNode* node)
+        {
+            // Your code here
+            TreeNode* parent = node;
+            TreeNode* l_child = parent->left;
+            TreeNode* r_child = parent->right;
+
+            int cnt = 1;
+
+            if(l_child !=nullptr){
+                cnt += getSize(l_child);
+            }
+
+            if(r_child !=nullptr){
+                cnt += getSize(r_child);
+            }
+
+            return cnt;
+        }
 
 };
 
