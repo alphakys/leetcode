@@ -1061,9 +1061,29 @@ class Tree{
             return log2(N);
         }
 
+        int maxBinTreeGCD(vector<vector<int>> arr, int N) {
+            // code here
 
+            if(N<3){
+                return 0;
+            }
+            int parent_node = arr[0][0];
+            int curr_index = 0;
 
+            for(int i=1; i< N-1; i++){
+                //cout << arr[i][0];
+                if(parent_node == arr[i][0] and curr_index == (i-1)){
+                    cout << "p : " << parent_node << " idx : " << curr_index << endl;
+                    parent_node = arr[++i][0];
+                    curr_index = i;
+                }
+                // for(int j=0; j<2; j++){
+                //     if(arr[i][0] == )
+                // }
+                // cout << endl;
+            }
 
+        }
 
 
 
