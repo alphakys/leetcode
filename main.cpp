@@ -1008,12 +1008,12 @@ class Tree{
             return cnt;
         }
 
-        long int sumBT(Node* root)
+        long int sumBT(TreeNode* root)
         {
             // Code here
-            Node* parent = root;
-            Node* l_child = parent->left;
-            Node* r_child = parent->right;
+            TreeNode* parent = root;
+            TreeNode* l_child = parent->left;
+            TreeNode* r_child = parent->right;
             long sum = 0;
 
             sum += (long)(parent->data);
@@ -1028,6 +1028,50 @@ class Tree{
 
             return sum;
         }
+
+
+        int countNonLeafNodes(TreeNode* root) {
+            // Code here
+
+            TreeNode* parent = root;
+            TreeNode* l_child = parent->left;
+            TreeNode* r_child = parent->right;
+
+            int cnt = 0;
+
+            if(l_child !=nullptr or r_child != nullptr) {
+                cnt++;
+            }
+
+
+            if(l_child !=nullptr){
+                cnt += countNonLeafNodes(l_child);
+            }
+
+            if(r_child !=nullptr){
+                cnt += countNonLeafNodes(r_child);
+            }
+
+            return cnt;
+
+        }
+
+        int heapHeight(int N, int arr[]){
+            // code here
+            return log2(N);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 };
