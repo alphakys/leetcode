@@ -915,8 +915,8 @@ class Tree{
         void preorder(TreeNode* root)
         {
             TreeNode* parent = root;
-            TreeNode* l_child = root->left;
-            TreeNode* r_child = root->right;
+            TreeNode* l_child = parent->left;
+            TreeNode* r_child = parent->right;
 
             printf("%d ", parent->data);
 
@@ -1007,6 +1007,28 @@ class Tree{
 
             return cnt;
         }
+
+        long int sumBT(Node* root)
+        {
+            // Code here
+            Node* parent = root;
+            Node* l_child = parent->left;
+            Node* r_child = parent->right;
+            long sum = 0;
+
+            sum += (long)(parent->data);
+
+            if(l_child !=nullptr){
+                sum += sumBT(l_child);
+            }
+
+            if(r_child !=nullptr){
+                sum += sumBT(r_child);
+            }
+
+            return sum;
+        }
+
 
 };
 
