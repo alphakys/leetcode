@@ -1127,15 +1127,56 @@ public:
 
 
 int main() {
+    //quotient q
+    //remainder r
+    int a, b;
+    //scanf("%d %d", &a, &b);
 
-    int a = 2;
-    if(a==1)
-        cout << a;
-    else
-        cout << 123;
-    //tree 복습
+    vector<int> collector;
 
-    // django orm date compare completed!!
+    a= 20; b=301;
+    int i=2;
+
+    for(;;) {
+        while (((a % i) != 0 or (b % i) != 0) and (i <= a and i <= b)) {
+            i++;
+        }
+        if (i == a or i == b) {
+            collector.push_back(i);
+            break;
+        } else {
+            collector.push_back(i++);
+        }
+    }
+
+    printList(collector);
+    //while((a%i++)!=0){}
+
+
+//    a = 231;
+//    int i=2;
+//    for (;  ; ) {
+//        while((a%i++)!=0){}
+//        int q = a/(i-1);
+//        if(q==1){
+//            collector.push_back(i-1);
+//            break;
+//        }
+//        else{
+//            collector.push_back(i-1);
+//            a =q;
+//            i=2;
+//        }
+//
+//    }
+
+//    int q = a/2;
+//    int r = a%2;
+
+    //printf("%d %d", q,r);
+
+
+
 
 
     return 0;
