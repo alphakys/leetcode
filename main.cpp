@@ -1134,22 +1134,35 @@ int main() {
 
     vector<int> collector;
 
-    a= 20; b=301;
-    int i=2;
+    a = 22;
+    b = 20;
 
-    for(;;) {
-        while (((a % i) != 0 or (b % i) != 0) and (i <= a and i <= b)) {
-            i++;
-        }
-        if (i == a or i == b) {
-            collector.push_back(i);
-            break;
-        } else {
-            collector.push_back(i++);
-        }
+    int small;
+    if (a == b) {
+        cout << a << endl;
+        cout << a << endl;
+
+        return 0;
+    }else if(a>b){
+        small = b;
+    }else{
+        small =a;
     }
 
-    printList(collector);
+    //24는 18에 대해서 3분의 4배다. 18분의 24
+
+    for (; small >= 1 ; --small) {
+        int divisor_a = a%small;
+        int divisor_b = b%small;
+
+        if( divisor_a == 0 and divisor_b == 0) { collector.push_back(small); }
+    }
+
+    cout << collector[0] << endl;
+    cout << ( (a/collector[0]) * (b/collector[0]) )* collector[0];
+
+
+    //printList(collector);
     //while((a%i++)!=0){}
 
 
