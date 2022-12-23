@@ -1099,17 +1099,17 @@ class Tree{
 
 
 class Stack{
-#define stack_len 1000
+    #define stack_len 1000
 
-private:
-    int arr[stack_len];
-    int top = -1;
+    private:
+        int arr[stack_len];
+        int top = -1;
 
-public:
-    void push(int x)
-    {
-        arr[++top] = x;
-    }
+    public:
+        void push(int x)
+        {
+            arr[++top] = x;
+        }
 
 //Function to remove an item from top of the stack.
     int pop()
@@ -1126,19 +1126,27 @@ public:
 };
 
 
+void get_gcd(){
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    int original_a =a;
+    int original_b =b;
+
+    while(a%b!=0){
+        int tmp = a;
+        a = b;
+        b = tmp%b;
+    }
+
+    printf("%d\n", b);
+    printf("%d", (original_a/b)*(original_b/b)*b);
+}
+
+
 int main() {
     //quotient q
     //remainder r
-    int a, b;
-    //scanf("%d %d", &a, &b);
-
-    int collector[0];
-
-    a = 34;
-    b = 22;
-
-    cout << a%b << " " << a/b << endl;
-    cout << (a*2)%b << " " << (a*2)/b << endl;
 
 
     //
