@@ -525,10 +525,6 @@ typedef struct Node {
 }Node;
 
 
-
-
-
-
 class LinkedList{
 
     private:
@@ -1145,37 +1141,11 @@ void get_gcd(){
 
 
 int main() {
-    //quotient q
-    //remainder r
 
+    Node *a = nullptr;
+    Node *b = nullptr;
 
-    //
-//    int small;
-//    if (a == b) {
-//        cout << a << endl;
-//        cout << a << endl;
-//
-//        return 0;
-//    }else if(a>b){
-//        small = b;
-//    }else{
-//        small =a;
-//    }
-//
-//    //24는 18에 대해서 3분의 4배다. 18분의 24
-//
-//    for (; small >= 1 ; --small) {
-//        int divisor_a = a%small;
-//        int divisor_b = b%small;
-//
-//        if( divisor_a == 0 and divisor_b == 0) { collector[0]=small; break; }
-//    }
-//
-//    cout << collector[0] << endl;
-//    cout << ( (a/collector[0]) * (b/collector[0]) )* collector[0];
-
-
-
+    cout << (a and b);
 
     return 0;
 }
