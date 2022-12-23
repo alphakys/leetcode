@@ -1132,62 +1132,39 @@ int main() {
     int a, b;
     //scanf("%d %d", &a, &b);
 
-    vector<int> collector;
+    int collector[0];
 
-    a = 22;
-    b = 20;
+    a = 34;
+    b = 22;
 
-    int small;
-    if (a == b) {
-        cout << a << endl;
-        cout << a << endl;
-
-        return 0;
-    }else if(a>b){
-        small = b;
-    }else{
-        small =a;
-    }
-
-    //24는 18에 대해서 3분의 4배다. 18분의 24
-
-    for (; small >= 1 ; --small) {
-        int divisor_a = a%small;
-        int divisor_b = b%small;
-
-        if( divisor_a == 0 and divisor_b == 0) { collector.push_back(small); }
-    }
-
-    cout << collector[0] << endl;
-    cout << ( (a/collector[0]) * (b/collector[0]) )* collector[0];
+    cout << a%b << " " << a/b << endl;
+    cout << (a*2)%b << " " << (a*2)/b << endl;
 
 
-    //printList(collector);
-    //while((a%i++)!=0){}
-
-
-//    a = 231;
-//    int i=2;
-//    for (;  ; ) {
-//        while((a%i++)!=0){}
-//        int q = a/(i-1);
-//        if(q==1){
-//            collector.push_back(i-1);
-//            break;
-//        }
-//        else{
-//            collector.push_back(i-1);
-//            a =q;
-//            i=2;
-//        }
+    //
+//    int small;
+//    if (a == b) {
+//        cout << a << endl;
+//        cout << a << endl;
 //
+//        return 0;
+//    }else if(a>b){
+//        small = b;
+//    }else{
+//        small =a;
 //    }
-
-//    int q = a/2;
-//    int r = a%2;
-
-    //printf("%d %d", q,r);
-
+//
+//    //24는 18에 대해서 3분의 4배다. 18분의 24
+//
+//    for (; small >= 1 ; --small) {
+//        int divisor_a = a%small;
+//        int divisor_b = b%small;
+//
+//        if( divisor_a == 0 and divisor_b == 0) { collector[0]=small; break; }
+//    }
+//
+//    cout << collector[0] << endl;
+//    cout << ( (a/collector[0]) * (b/collector[0]) )* collector[0];
 
 
 
