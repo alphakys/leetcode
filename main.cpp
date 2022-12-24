@@ -1081,7 +1081,40 @@ class Tree{
 
         }
 
+        bool isIdentical(TreeNode *r1, TreeNode *r2)
+        {
+            //Your Code here
 
+            // 1. r1, r2가 모두 left가 있을 때,
+            // 2. r1, r2중 하나가 null일 때,
+            // 3. r1, r2 모두가 null일 때
+
+            if(r1 ==nullptr && r2 ==nullptr)
+                return false;
+
+            if(r1->data == r2->data){
+                if(r1->left !=nullptr and r2->left !=nullptr)
+                    isIdentical(r1->left, r2->left);
+                else if(r1->left == nullptr and r2->left ==nullptr){
+
+                }
+                else{ return false;}
+
+
+                if(r1->right !=nullptr and r2->right !=nullptr)
+                    isIdentical(r1->right, r2->right);
+                else if(r1->right == nullptr and r2->right ==nullptr){
+
+                }
+                else{ return false;}
+
+            }
+            else {
+                return false;
+            }
+            return true;
+
+        }
 
 
 
