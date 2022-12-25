@@ -1114,6 +1114,22 @@ class Tree{
             }
             return true;
 
+            // !!깔끔한 코드!!
+//            if(r1==nullptr && r2==nullptr)
+//                return true;
+//
+//            if(r1 != nullptr and r2 != nullptr){
+//
+//                return (
+//                        (r1->data == r2->data) &&
+//                        isIdentical(r1->left, r2->left)
+//                isIdentical(r1->right, r2->right)
+//
+//                )
+//            }
+//
+//            // one empty, one not -> false;
+//            return false;
         }
 
 
@@ -1124,6 +1140,7 @@ class Tree{
 
 
 };
+
 
 
 
@@ -1175,11 +1192,7 @@ void get_gcd(){
 
 int main() {
 
-    Node *a = nullptr;
-    Node *b = nullptr;
-
-    cout << (a and b);
-
+    cout << (true && false);
     return 0;
 }
 
