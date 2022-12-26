@@ -916,9 +916,9 @@ class Tree{
 
             printf("%d ", parent->data);
 
-            if(l_child !=nullptr){ preorder(parent); }
+            if(l_child !=nullptr){ preorder(l_child); }
 
-            if(r_child !=nullptr){ preorder(parent); }
+            if(r_child !=nullptr){ preorder(r_child); }
 
         }
 
