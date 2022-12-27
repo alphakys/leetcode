@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <array>
-#include<cstdlib>
+#include <cstdlib>
 #include <cmath>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -743,6 +745,22 @@ class LinkedList{
 
         }
 
+        bool detectLoop(Node* head)
+        {
+            // your code here
+            Node* curr = head;
+
+            unordered_set<Node*> s;
+            s.insert(head);
+            while(curr->next != nullptr){
+
+                curr = curr->next;
+                if(!s.insert(curr).second){ return true; }
+            }
+
+            return false;
+        }
+
 };
 
 typedef struct DoubleNode{
@@ -1192,7 +1210,11 @@ void get_gcd(){
 
 int main() {
 
-    cout << (true && false);
+    set<int> s;
+    s.insert(1);
+
+    cout << s.insert(1).second;
+
     return 0;
 }
 
