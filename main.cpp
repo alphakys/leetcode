@@ -761,6 +761,31 @@ class LinkedList{
             return false;
         }
 
+        int getNthFromLast(Node *head, int n)
+        {
+            // Your code here
+            int len = 0;
+            Node* curr = head;
+            while(head->next != nullptr){
+                head = head->next;
+                len++;
+            }
+
+            if(len-n+1<0)
+                return -1;
+
+            int i=0;
+            while(i++<len-n+1){
+                curr = curr->next;
+            }
+
+            return curr->data;
+
+        }
+
+
+
+
 };
 
 typedef struct DoubleNode{
@@ -1205,6 +1230,23 @@ void get_gcd(){
 
     printf("%d\n", b);
     printf("%d", (original_a/b)*(original_b/b)*b);
+}
+
+
+
+class String{
+    public:
+        string reverseWord(string str){
+
+            //Your code here
+            int i=0;
+            for(; str[i]!=0; i++){}
+
+            for(; i>=0; i--){ printf("%c", str[i]); }
+
+
+        }
+
 }
 
 
