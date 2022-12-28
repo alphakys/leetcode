@@ -783,7 +783,28 @@ class LinkedList{
 
         }
 
+        int getMiddle(Node *head)
+        {
+            // Your code here
+            int len = 1;
+            Node* curr = head;
 
+            while(head->next != nullptr){
+                len++;
+                head= head->next;
+            }
+
+            int idx = len/2;
+
+            int i= 0;
+
+            while(i++ < idx){
+                curr = curr->next;
+            }
+
+            return curr->data;
+
+        }
 
 
 };
