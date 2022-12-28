@@ -1287,29 +1287,28 @@ public:
 
 int main() {
 
-    string left_brackets = "([{";
-    string right_brackets = ")]}";
+    string s = "i.like.this.program.very.much";
 
-    string c = "(){}[]";
-    //40 41 123 125 91 93
-    string test = "{([()()])}";
+    string arr[6];
 
-    int last = test.size();
-    int last_idx = last - 1;
+    int idx = 0;
+    string test = "";
+    for (int i = 0; s[i] != NULL; ++i) {
 
-    cout << (right_brackets.find(']')==string::npos);
-//    if(right_brackets.find('p')== string::npos)
-//        cout << "not";
-
-    int i = 0;
-    while (i<last) {
-
-        if(right_brackets.find(test[i]) != string::npos){
-            cout << test[i];
-            break;
+        if(s[i]=='.'){
+            cout << &test << endl;
+            arr[idx++] = test;
+            test = "";
         }
-        i++;
+        else{ test += s[i]; }
     }
+    cout << &arr[0];
+//
+//    int len = size(arr);
+//    for (int i = 0; i < len; ++i) {
+//        cout << arr[i];
+//    }
+
 
     return 0;
 }
