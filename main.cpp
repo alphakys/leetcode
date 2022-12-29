@@ -1269,7 +1269,7 @@ void get_gcd() {
 }
 
 
-class String {
+class StringSolution {
 public:
     string reverseWord(string str) {
 
@@ -1282,40 +1282,75 @@ public:
 
     }
 
+    bool isAnagram(string a, string b){
+
+        // Your code here
+        int arr_a[26] = {0,};
+        int arr_b[26] = {0,};
+
+        int len_a = a.size();
+        int len_b = b.size();
+
+        if(len_a != len_b){ return false;}
+
+        for (int i = 0; i < len_a; ++i) {
+
+            arr_a[(int)(a[i]-97)]++;
+            arr_b[(int)(b[i]-97)]++;
+        }
+
+        for (int k = 0; k < 26; ++k) {
+
+            if(arr_b[k] != arr_a[k]){
+
+                return false;
+            }
+        }
+        return true;
+    }
+
 };
 
+typedef struct voidType{
+    void* ptr;
+}voidType;
+
+void printEvery(voidType a){
+
+    //cout << a;
+}
 
 int main() {
 
-    string S = "i.like.this.program.very.much";
-    vector<string> arr;
+    string a = "geeksforgeeks";
+    string b = "forgeeksgeeks";
 
-    string test = "";
-    for (int i = 0; S[i] != NULL; ++i) {
+    int arr_a[26]; //0~ 25
+    int arr_b[26]; //0~ 25
 
-        if(S[i]=='.'){
-            arr.push_back(test);
-            test = "";
-        }
-        else{ test += S[i]; }
-    }
-    arr.push_back(test);
+    int len_a = size(a);
+    int len_b = size(b);
 
-    int len = size(arr)-1;
+    if(len_a != len_b){ return false;}
 
-    for (; 0 <= len; len--) {
-        if(len==0){ cout << arr[len]; }
-        else{ cout << arr[len] << "."; }
+    for (int i = 0; i < len_a; ++i) {
+        int index_a = a[i]-97;
+        arr_a[index_a]++;
+        int index_b = b[i]-97;
+        arr_b[index_b]++;
     }
 
+    for (int i = 0; i < 26; ++i) {
+        if(arr_b[i] != arr_a[i])
+            cout << false;
 
+    }
+    cout << true;
 
+//    for (int i = 0; i < 26; ++i) {
+//        cout << arr_b[i] << " ";
 //
-//    int len = size(arr);
-//    for (int i = 0; i < len; ++i) {
-//        cout << arr[i];
 //    }
-
 
     return 0;
 }
