@@ -1287,22 +1287,29 @@ public:
 
 int main() {
 
-    string s = "i.like.this.program.very.much";
+    string S = "i.like.this.program.very.much";
+    vector<string> arr;
 
-    string arr[6];
-
-    int idx = 0;
     string test = "";
-    for (int i = 0; s[i] != NULL; ++i) {
+    for (int i = 0; S[i] != NULL; ++i) {
 
-        if(s[i]=='.'){
-            cout << &test << endl;
-            arr[idx++] = test;
+        if(S[i]=='.'){
+            arr.push_back(test);
             test = "";
         }
-        else{ test += s[i]; }
+        else{ test += S[i]; }
     }
-    cout << &arr[0];
+    arr.push_back(test);
+
+    int len = size(arr)-1;
+
+    for (; 0 <= len; len--) {
+        if(len==0){ cout << arr[len]; }
+        else{ cout << arr[len] << "."; }
+    }
+
+
+
 //
 //    int len = size(arr);
 //    for (int i = 0; i < len; ++i) {
