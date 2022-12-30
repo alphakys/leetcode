@@ -1036,6 +1036,54 @@ public:
             inOrder(rightChild);
         }
 
+        // using stack!
+//        vector<int> answer;
+//
+//        Node* l = root->left;
+//        Node* r = root->right;
+//
+//        Stack s;
+//
+//        s.push(root);
+//
+//        Node* parent = root;
+//
+//        // while(l != nullptr){
+//
+//        //     if(l->right !=nullptr)
+//        //         s.push(l->right);
+//        //     s.push(l);
+//        //     l = l->left;
+//        // }
+//
+//        //Node* n = s.pop();
+//
+//        // while(n != nullptr){
+//        //     cout << n->data << endl;
+//
+//        //     n = s.pop();
+//        // }
+//
+//        while(r != nullptr){
+//            s.push(r);
+//            if(r->left !=nullptr)
+//                s.push(r->left);
+//
+//            r = r->right;
+//        }
+//
+//        Node* n = s.pop();
+//
+//        while(n != nullptr){
+//            cout << n->data << " ";
+//
+//            n = s.pop();
+//        }
+//        // s.push(r->data);
+//        // s.push(parent->data);
+//        // s.push(l->data);
+//
+//        return answer;
     }
 
     void postOrder(TreeNode *root) {
