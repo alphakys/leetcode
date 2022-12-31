@@ -1370,35 +1370,123 @@ void printEvery(voidType a){
 
 int main() {
 
-    string a = "geeksforgeeks";
-    string b = "forgeeksgeeks";
+    vector<int> answer;
 
-    int arr_a[26]; //0~ 25
-    int arr_b[26]; //0~ 25
+    Node* l = root->left;
+    Node* r = root->right;
 
-    int len_a = size(a);
-    int len_b = size(b);
+    Node* n = root;
 
-    if(len_a != len_b){ return false;}
 
-    for (int i = 0; i < len_a; ++i) {
-        int index_a = a[i]-97;
-        arr_a[index_a]++;
-        int index_b = b[i]-97;
-        arr_b[index_b]++;
+    // 순서 우 중 좌
+
+    Stack s;
+    Node* parent;
+
+    while(n !=nullptr){
+
+        while(n->left != nullptr){
+
+            while(n->right !=nullptr){
+
+
+            }
+
+            s.push(n);
+            n = n->left;
+
+        }
+        s.push(n);
+        break;
+    }
+    // while(n != nullptr){
+
+    //     while(n->right != nullptr){
+
+    //         while(n->left != nullptr){
+    //             s.push(n->right);
+    //             a.push()
+    //         }
+    //         s.push(n);
+    //         n = n->left;
+    //     }
+    // }
+
+
+
+
+
+    // while(n != nullptr){
+
+    //     if(n->right != nullptr){
+    //         parent = n;
+    //         n = n->right;
+    //         continue;
+    //     }
+
+    //     if(n->left !=nullptr){
+    //         parent = n;
+    //         n = n->left;
+    //         continue;
+    //     }
+
+    //     s.push(parent->right);
+    //     s.push(parent);
+    //     n = parent;
+    // }
+
+    //s.push(n);
+
+    Node* t = s.pop();
+
+    while(t!=nullptr){
+        cout << t->data << " ";
+        t = s.pop();
+
     }
 
-    for (int i = 0; i < 26; ++i) {
-        if(arr_b[i] != arr_a[i])
-            cout << false;
+    // Stack s;
 
-    }
-    cout << true;
+    // s.push(root);
 
-//    for (int i = 0; i < 26; ++i) {
-//        cout << arr_b[i] << " ";
-//
-//    }
+    // Node* parent = root;
+
+    // while(l != nullptr){
+
+    //     if(l->right !=nullptr)
+    //         s.push(l->right);
+    //     s.push(l);
+    //     l = l->left;
+    // }
+
+    //Node* n = s.pop();
+
+    // while(n != nullptr){
+    //     cout << n->data << endl;
+
+    //     n = s.pop();
+    // }
+
+    // while(r != nullptr){
+    //     s.push(r);
+    //     if(r->left !=nullptr)
+    //         s.push(r->left);
+
+    //     r = r->right;
+    // }
+
+    // Node* n = s.pop();
+
+    // while(n != nullptr){
+    //     cout << n->data << " ";
+
+    //     n = s.pop();
+    // }
+    // s.push(r->data);
+    // s.push(parent->data);
+    // s.push(l->data);
+
+    return answer;
 
     return 0;
 }
