@@ -1393,28 +1393,7 @@ int main() {
 
     int arr[] = {1, 2, 3, 4, 9};
 
-    int size = 5;
-    int target = 6;
 
-    int r = size-1;
-    int l = 0;
-    int mid = l + (r-l)/2;
-
-    int i=0;
-    while(true and i<20){
-        cout << l << " " << mid << " " << r << " " <<endl;
-        if(l>r or r<l){ cout << -1; break;}
-
-        if(arr[mid] > target){
-            r = mid-1;
-            mid = l + (r-l)/2;
-        }else if (arr[mid] == target){ cout << "answer : " << mid; break; }
-        else{
-            l = mid+1;
-            mid = l + (r-l)/2;
-        }
-        i++;
-    }
 
 
     return 0;
