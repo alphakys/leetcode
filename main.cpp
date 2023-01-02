@@ -1389,12 +1389,72 @@ void printEvery(voidType a){
     //cout << a;
 }
 
+// 2 -1
+// 3 -2
+// 4 -3
+
+
 int main() {
 
-    int arr[] = {1, 2, 3, 4, 9};
+    int arr[] = {1,2,3,4,5,6,7,8,9,10};
+    vector<int> answer;
+    vector<int> l;
+
+    int n = 10;
+    int s = 15;
+    //for (int i = 0; i < n; ++i) {
+
+        int sum = arr[0];
+
+        int j = 1;
+        for (; j < n; ++j) {
+            sum +=arr[j];
+            cout << sum << " ";
+            int sub = sum;
+            for (int k = j; k >0; --k) {
+                if((sub - arr[k])==s ){
+            //        cout << "sub : " << sub << " k: " << arr[k];
+                }
+
+            }
+            cout << endl;
+        }
+        //l.push_back(-1);
+    //}
+
+//
+//    int len = l.size();
+//
+//    for (int i = 0; i < len; ++i) {
+//        if(l[i]==-1){
+//            cout << endl;
+//        }else{
+//            cout << l[i] << " ";
+//        }
+//
+//    }
+////{1,2,3,4,5,6,7,8,9,10};
+//
+//    int t_sum = 0;
+//    for (int i = 0; i < n; ++i) {
+//        t_sum += arr[i];
+//        for (int j = i+1; j < len; ++j) {
+//            int target_num = l[j] -= t_sum;
+//            if(target_num==s){
+//
+//            }
+//
+//        }
+//
+//    }
 
 
+    
 
+    //printList(l);
+
+//    end:
+//    printList(answer);
 
     return 0;
 }
