@@ -1389,71 +1389,86 @@ void printEvery(voidType a){
     //cout << a;
 }
 
-// 2 -1
-// 3 -2
-// 4 -3
+class WindowSliding{
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        // code here
+        long sum = 0;
+        for (int i = 0; i < K; ++i) {
+            sum+= Arr[i];
+        }
+        long max_sum = sum;
+
+        for (int i = 1; i <= N-K; ++i) {
+            sum -= Arr[i-1];
+            sum += Arr[i+K-1];
+
+            if(max_sum < sum)
+            {
+                max_sum = sum;
+            }
+        }
+        return max_sum;
+
+    }
+
+};
 
 
 int main() {
 
     int arr[] = {1,2,3,4,5,6,7,8,9,10};
     vector<int> answer;
-    vector<int> l;
+    int N = 10;
+    int K = 5;
 
-    int n = 10;
-    int s = 15;
-    //for (int i = 0; i < n; ++i) {
+    int sum = 0;
+    for (int i = 0; i < K; ++i) {
+        sum+= arr[i];
+    }
+    int max_sum = sum;
 
-        int sum = arr[0];
+    for (int i = 1; i <= N-K; ++i) {
+        sum -= arr[i-1];
+        sum += arr[i+K-1];
 
-        int j = 1;
-        for (; j < n; ++j) {
-            sum +=arr[j];
-            cout << sum << " ";
-            int sub = sum;
-            for (int k = j; k >0; --k) {
-                if((sub - arr[k])==s ){
-            //        cout << "sub : " << sub << " k: " << arr[k];
-                }
-
-            }
-            cout << endl;
+        if(max_sum < sum)
+        {
+            max_sum = sum;
         }
-        //l.push_back(-1);
-    //}
-
+    }
+    cout << max_sum;
+//    vector<int> l;
 //
-//    int len = l.size();
+//    int n = 10;
+//    int s = 15;
+//    //for (int i = 0; i < n; ++i) {
 //
-//    for (int i = 0; i < len; ++i) {
-//        if(l[i]==-1){
-//            cout << endl;
-//        }else{
-//            cout << l[i] << " ";
+//    int sum = arr[0];
+//
+//    int j = 1;
+//    for (; j < n; ++j) {
+//        sum += arr[j];
+//        if (sum == s) {
+//            answer.push_back(1);
+//            answer.push_back(j+1);
+//            break;
 //        }
-//
-//    }
-////{1,2,3,4,5,6,7,8,9,10};
-//
-//    int t_sum = 0;
-//    for (int i = 0; i < n; ++i) {
-//        t_sum += arr[i];
-//        for (int j = i+1; j < len; ++j) {
-//            int target_num = l[j] -= t_sum;
-//            if(target_num==s){
-//
+//        int sub = 0;
+//        for (int k = 0; k <j-1; ++k) {
+//            sub += arr[k];
+//            cout << "sum : " << sum << " k: " << sum - sub << endl;
+//            if((sum - sub)==s ){
+//                answer.push_back(k+2);
+//                answer.push_back(j+1);
+//                return 0;
 //            }
 //
 //        }
 //
 //    }
-
-
-    
-
-    //printList(l);
-
-//    end:
+//
+//
 //    printList(answer);
 
     return 0;
