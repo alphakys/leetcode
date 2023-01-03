@@ -1419,57 +1419,38 @@ int main() {
 
     int arr[] = {1,2,3,4,5,6,7,8,9,10};
     vector<int> answer;
-    int N = 10;
-    int K = 5;
 
-    int sum = 0;
-    for (int i = 0; i < K; ++i) {
-        sum+= arr[i];
-    }
-    int max_sum = sum;
+    int n = 10;
+    int s = 15;
+    int K = 2;
 
-    for (int i = 1; i <= N-K; ++i) {
-        sum -= arr[i-1];
-        sum += arr[i+K-1];
+    while(K<n){
 
-        if(max_sum < sum)
-        {
-            max_sum = sum;
+        long sum = 0;
+        for (int i = 0; i < K; ++i) {
+            sum+= arr[i];
         }
+        cout << "s : " << sum << endl;
+        //long target_sum = sum;
+
+        for (int i = 1; i <= n-K; ++i) {
+            sum -= arr[i-1];
+            sum += arr[i+K-1];
+            cout << sum << " ";
+            if(sum == s)
+            {
+                answer.push_back(i+1);
+                answer.push_back(i+K);
+
+                //printList(answer);
+                goto end;
+            }
+        }
+        K++;
     }
-    cout << max_sum;
-//    vector<int> l;
-//
-//    int n = 10;
-//    int s = 15;
-//    //for (int i = 0; i < n; ++i) {
-//
-//    int sum = arr[0];
-//
-//    int j = 1;
-//    for (; j < n; ++j) {
-//        sum += arr[j];
-//        if (sum == s) {
-//            answer.push_back(1);
-//            answer.push_back(j+1);
-//            break;
-//        }
-//        int sub = 0;
-//        for (int k = 0; k <j-1; ++k) {
-//            sub += arr[k];
-//            cout << "sum : " << sum << " k: " << sum - sub << endl;
-//            if((sum - sub)==s ){
-//                answer.push_back(k+2);
-//                answer.push_back(j+1);
-//                return 0;
-//            }
-//
-//        }
-//
-//    }
-//
-//
-//    printList(answer);
+
+    end:
+
 
     return 0;
 }
