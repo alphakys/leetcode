@@ -1417,11 +1417,11 @@ public:
 
 int main() {
 
-    int arr[] = {1,2,3,4,5,6,7,8,9,10};
+    int arr[] = {1, 2, 3, 7, 5};
     vector<int> answer;
 
-    int n = 10;
-    int s = 15;
+    int n = 5;
+    int s = 12;
     int K = 2;
 
     while(K<n){
@@ -1430,28 +1430,57 @@ int main() {
         for (int i = 0; i < K; ++i) {
             sum+= arr[i];
         }
-        cout << "s : " << sum << endl;
-        //long target_sum = sum;
+
+        if(sum ==s){
+            answer.push_back(1);
+            answer.push_back(K);
+
+        }
 
         for (int i = 1; i <= n-K; ++i) {
             sum -= arr[i-1];
             sum += arr[i+K-1];
-            cout << sum << " ";
             if(sum == s)
             {
                 answer.push_back(i+1);
                 answer.push_back(i+K);
-
-                //printList(answer);
-                goto end;
+                //goto end;
             }
         }
         K++;
     }
 
     end:
+    printList(answer); cout << endl;
+    int l = answer.size();
 
+    if(l==0){
+        cout << "0";
+        answer.push_back(-1);
+        //return answer;
+    }else if(l==2){
 
+        cout << "1";
+        //return answer;
+    }
+
+    int min = answer[0];
+    int idx = 0;
+    for (int i = 0; i < l; ++i) {
+
+        int r = i%2;
+        if(r==0){
+            if(min > answer[i]){
+               min = answer[i];
+               idx = i;
+            }
+        }
+    }
+    answer.clear();
+    answer.push_back(answer[idx]);
+    answer.push_back(answer[idx+1]);
+
+    printList(answer);
     return 0;
 }
 
