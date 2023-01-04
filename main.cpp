@@ -1442,21 +1442,36 @@ public:
 
 int main() {
 
-    int arr[] = {0, 2, 1, 2, 0};
+    int arr[] = {2, 0,0,2};
 
-    int check_arr[3] = {0,};
+    int low = 0;
+    int mid = 0;
+    int size = sizeof(arr)/sizeof(int);
 
-    for (int i = 0; i < 5; ++i) {
-        check_arr[arr[i]]++;
-    }
+    int high = size-1;
 
-    for (int i = 0; i < 3; ++i) {
-        int len = check_arr[i];
-        for (int j = 0; j < len; ++j) {
-            printf("%d ", i);
+    int dutch_flag[] = {0,};
+
+    for (int i = 0; i < 4; ++i) {
+        //cout << i << " " << arr[i] << endl;
+        if(arr[i] == 0)
+        {
+            dutch_flag[low++] = 0;
+        }
+        else if(arr[i] == 1)
+        {
+
+        }
+        else if(arr[i]==2)
+        {
+            cout << "s";
+            dutch_flag[high--] = 2;
         }
     }
 
+    for (int i = 0; i < size; ++i) {
+        cout << dutch_flag[i] << " ";
+    }
 
     return 0;
 }
