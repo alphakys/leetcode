@@ -1414,75 +1414,64 @@ public:
 
 };
 
+class Sorting{
+public:
+    void sort012(int a[], int n)
+    {
+        // code here
+        int check_arr[3] = {0,};
+
+        for (int i = 0; i < n; ++i) {
+            check_arr[a[i]]++;
+        }
+
+        int idx = 0;
+        for (int i = 0; i < 3; ++i) {
+            int len = check_arr[i];
+
+            for (int j = 0; j < len; ++j) {
+                a[idx++] = i;
+
+            }
+        }
+    }
+
+
+};
+
 
 int main() {
 
-    int arr[] = {1, 2, 3, 7, 5};
-    vector<int> answer;
+    int arr[] = {0, 2, 1, 2, 0};
 
-    int n = 5;
-    int s = 12;
-    int K = 2;
+    int check_arr[3] = {0,};
 
-    while(K<n){
-
-        long sum = 0;
-        for (int i = 0; i < K; ++i) {
-            sum+= arr[i];
-        }
-
-        if(sum ==s){
-            answer.push_back(1);
-            answer.push_back(K);
-
-        }
-
-        for (int i = 1; i <= n-K; ++i) {
-            sum -= arr[i-1];
-            sum += arr[i+K-1];
-            if(sum == s)
-            {
-                answer.push_back(i+1);
-                answer.push_back(i+K);
-                //goto end;
-            }
-        }
-        K++;
+    for (int i = 0; i < 5; ++i) {
+        check_arr[arr[i]]++;
     }
 
-    end:
-    printList(answer); cout << endl;
-    int l = answer.size();
-
-    if(l==0){
-        cout << "0";
-        answer.push_back(-1);
-        //return answer;
-    }else if(l==2){
-
-        cout << "1";
-        //return answer;
-    }
-
-    int min = answer[0];
-    int idx = 0;
-    for (int i = 0; i < l; ++i) {
-
-        int r = i%2;
-        if(r==0){
-            if(min > answer[i]){
-               min = answer[i];
-               idx = i;
-            }
+    for (int i = 0; i < 3; ++i) {
+        int len = check_arr[i];
+        for (int j = 0; j < len; ++j) {
+            printf("%d ", i);
         }
     }
-    answer.clear();
-    answer.push_back(answer[idx]);
-    answer.push_back(answer[idx+1]);
 
-    printList(answer);
+
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void selectionSort(vector<int> nums) {
