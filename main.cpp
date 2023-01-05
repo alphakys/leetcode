@@ -1434,53 +1434,80 @@ public:
 
             }
         }
+
+        //dutch nation flag
+
+//        int low = 0;
+//        int mid = 0;
+//        int high = length-1;
+//
+//        int dutch_flag[length] = {0,};
+//
+//        for (int i = 0; i < length; i++) {
+//
+//            if(arr[i] == 0)
+//            {
+//                dutch_flag[low++] = 0;
+//                mid = low;
+//            }
+//            else if(arr[i] == 1)
+//            {
+//                dutch_flag[mid++] = 1;
+//            }
+//            else if(arr[i] == 2)
+//            {
+//                dutch_flag[high--] = 2;
+//            }
+//        }
+//
+//        for (int i = 0; i < length; ++i) {
+//            cout << dutch_flag[i] << " ";
+//        }
     }
 
 
 };
 
 
+int get_size(int arr[]){
+    cout << sizeof(arr)<< endl;
+    return sizeof(arr)/sizeof(int);
+}
+#include <typeinfo>
+
 int main() {
 
-    int arr[] = {2, 0,0,2};
+    int a[] = {16, 17, 4, 3, 5, 2};
 
-    int low = 0;
-    int mid = 0;
-    int size = sizeof(arr)/sizeof(int);
+    vector<int> answer;
+    int length = get_size(a);
 
-    int high = size-1;
-
-    int dutch_flag[] = {0,};
-
-    for (int i = 0; i < 4; ++i) {
-        //cout << i << " " << arr[i] << endl;
-        if(arr[i] == 0)
-        {
-            dutch_flag[low++] = 0;
-        }
-        else if(arr[i] == 1)
-        {
-
-        }
-        else if(arr[i]==2)
-        {
-            cout << "s";
-            dutch_flag[high--] = 2;
+    int max = a[0];
+    int index = 0;
+    for (int i = 0; i < length; ++i) {
+        if(a[i]>max){
+            max = a[i];
+            index = i;
         }
     }
 
-    for (int i = 0; i < size; ++i) {
-        cout << dutch_flag[i] << " ";
+
+
+    if(index == length-2){
+
+        answer.push_back(max);
+        answer.push_back(a[length-1]);
     }
+    else{
+        answer.push_back(max);
+        answer.push_back(a[length-2]);
+        answer.push_back(a[length-1]);
+    }
+
+    printList(answer);
 
     return 0;
 }
-
-
-
-
-
-
 
 
 
