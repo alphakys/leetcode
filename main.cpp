@@ -1465,7 +1465,45 @@ public:
 //        }
     }
 
+    int doUnion(int a[], int n, int b[], int m)  {
+        //code here
+        int check_arr[100001] = {0,};
 
+        int len = 0;
+        int second_idx = 0;
+        int second_len = 0;
+        int *p_arr = nullptr;
+
+        if(n<=m){
+            len =n;
+            second_idx = n;
+            second_len = m;
+            p_arr = b;
+        }else{
+            len =m;
+            second_idx = m;
+            second_len = n;
+            p_arr = a;
+        }
+        for (int i = 0; i <len; ++i) {
+            check_arr[a[i]]++;
+            check_arr[b[i]]++;
+        }
+
+        for (; second_idx < second_len; ++second_idx) {
+            check_arr[p_arr[second_idx]]++;
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < 100001; ++i) {
+            if(check_arr[i]>0){
+                cnt++;
+            }
+        }
+
+        return cnt;
+
+    }
 };
 
 
@@ -1477,35 +1515,47 @@ int get_size(int arr[]){
 
 int main() {
 
-    int a[] = {16, 17, 4, 3, 5, 2};
+    int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
+    int b[] = {1, 2, 3};
 
-    vector<int> answer;
-    int length = get_size(a);
+    int check_arr[100001] = {0,};
 
-    int max = a[0];
-    int index = 0;
-    for (int i = 0; i < length; ++i) {
-        if(a[i]>max){
-            max = a[i];
-            index = i;
+    int n = sizeof(a)/sizeof(int);
+    int m = sizeof(b)/sizeof(int);
+
+    int len = 0;
+    int second_idx = 0;
+    int second_len = 0;
+    int *p_arr = nullptr;
+
+    if(n<=m){
+        len =n;
+        second_idx = n;
+        second_len = m;
+        p_arr = b;
+    }else{
+        len =m;
+        second_idx = m;
+        second_len = n;
+        p_arr = a;
+    }
+    for (int i = 0; i <len; ++i) {
+        check_arr[a[i]]++;
+        check_arr[b[i]]++;
+    }
+
+    for (; second_idx < n; ++second_idx) {
+        check_arr[p_arr[second_idx]]++;
+    }
+
+    int cnt = 0;
+    for (int i = 0; i < 100001; ++i) {
+        if(check_arr[i]>0){
+            cnt++;
         }
     }
 
-
-
-    if(index == length-2){
-
-        answer.push_back(max);
-        answer.push_back(a[length-1]);
-    }
-    else{
-        answer.push_back(max);
-        answer.push_back(a[length-2]);
-        answer.push_back(a[length-1]);
-    }
-
-    printList(answer);
-
+    cout << cnt;
     return 0;
 }
 
