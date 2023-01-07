@@ -7,7 +7,7 @@
 #include <unordered_set>
 #include <string>
 #include <string.h>
-
+#include <map>
 
 using namespace std;
 
@@ -1502,7 +1502,37 @@ public:
         }
 
         return cnt;
-
+//        int len = 0;
+//        int second_idx = 0;
+//        int second_len = 0;
+//        int *p_arr = nullptr;
+//
+//        int n = 18;
+//        int m = 3;
+//        set<int> s;
+//
+//        if(n<=m){
+//            len =n;
+//            second_idx = n;
+//            second_len = m;
+//            p_arr = b;
+//        }else{
+//            len =m;
+//            second_idx = m;
+//            second_len = n;
+//            p_arr = a;
+//        }
+//
+//        for (int i = 0; i <len; ++i) {
+//            s.insert(a[i]);
+//            s.insert(b[i]);
+//        }
+//
+//        for (; second_idx < second_len; ++second_idx) {
+//            s.insert(p_arr[second_idx]);
+//        }
+//
+//        cout << s.size();
     }
 };
 
@@ -1518,15 +1548,14 @@ int main() {
     int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
     int b[] = {1, 2, 3};
 
-    int check_arr[100001] = {0,};
-
-    int n = sizeof(a)/sizeof(int);
-    int m = sizeof(b)/sizeof(int);
-
     int len = 0;
     int second_idx = 0;
     int second_len = 0;
     int *p_arr = nullptr;
+
+    int n = 18;
+    int m = 3;
+    set<int> s;
 
     if(n<=m){
         len =n;
@@ -1539,23 +1568,17 @@ int main() {
         second_len = n;
         p_arr = a;
     }
+
     for (int i = 0; i <len; ++i) {
-        check_arr[a[i]]++;
-        check_arr[b[i]]++;
+        s.insert(a[i]);
+        s.insert(b[i]);
     }
 
-    for (; second_idx < n; ++second_idx) {
-        check_arr[p_arr[second_idx]]++;
+    for (; second_idx < second_len; ++second_idx) {
+        s.insert(p_arr[second_idx]);
     }
 
-    int cnt = 0;
-    for (int i = 0; i < 100001; ++i) {
-        if(check_arr[i]>0){
-            cnt++;
-        }
-    }
-
-    cout << cnt;
+    cout << s.size();
     return 0;
 }
 
