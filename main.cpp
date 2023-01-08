@@ -1545,6 +1545,27 @@ int get_size(int arr[]){
 
 int main() {
 
+    int len = 0;
+    Node* curr = head;
+    while(curr->next !=nullptr){
+        len++;
+        curr = curr->next;
+    }
+
+    while(len!=0){
+        Node* ptr = head;
+        for(int i=0; i<len; i++){
+            cout <<"t : " << ptr->data << " ";
+            ptr = ->next;
+        }
+
+        //curr->next =
+        len--;
+    }
+
+
+    return head;
+
     int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
     int b[] = {1, 2, 3};
 
@@ -1569,6 +1590,9 @@ int main() {
         p_arr = a;
     }
 
+    map<int, int> map;
+
+    map.insert()
     for (int i = 0; i <len; ++i) {
         s.insert(a[i]);
         s.insert(b[i]);
