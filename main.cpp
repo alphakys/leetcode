@@ -1544,65 +1544,70 @@ int get_size(int arr[]){
 #include <typeinfo>
 
 int main() {
-    int len = 0;
-    Node* curr = head;
-    while(curr->next !=nullptr){
-        len++;
-        curr = curr->next;
-    }
-
-    while(len>=0){
-        Node* ptr = head;
-        for(int i=0; i<len; i++){
-            ptr = ptr->next;
-        }
-
-        cout << ptr->data << " " << len << endl;
-        //curr->next = ptr;
-        //curr = curr->next;
-        len--;
-    }
-
-
-    return curr;
-
-    int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
-    int b[] = {1, 2, 3};
 
     int len = 0;
-    int second_idx = 0;
-    int second_len = 0;
-    int *p_arr = nullptr;
+    Node* t = new Node(1);
+    cout << t <<endl;
 
-    int n = 18;
-    int m = 3;
-    set<int> s;
+    Node* curr = t;
+    cout << curr <<endl;
+//
+//    while(curr->next !=nullptr){
+//        len++;
+//        curr = curr->next;
+//    }
+//
+//    while(len!=0){
+//        Node* ptr = head;
+//        for(int i=0; i<len; i++){
+//            cout <<"t : " << ptr->data << " ";
+//            ptr = ->next;
+//        }
+//
+//        //curr->next =
+//        len--;
+//    }
+//
+//    return head;
 
-    if(n<=m){
-        len =n;
-        second_idx = n;
-        second_len = m;
-        p_arr = b;
-    }else{
-        len =m;
-        second_idx = m;
-        second_len = n;
-        p_arr = a;
-    }
+//    int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
+//    int b[] = {1, 2, 3};
+//
+//    int len = 0;
+//    int second_idx = 0;
+//    int second_len = 0;
+//    int *p_arr = nullptr;
+//
+//    int n = 18;
+//    int m = 3;
+//    set<int> s;
+//
+//    if(n<=m){
+//        len =n;
+//        second_idx = n;
+//        second_len = m;
+//        p_arr = b;
+//    }else{
+//        len =m;
+//        second_idx = m;
+//        second_len = n;
+//        p_arr = a;
+//    }
+//
+//    map<int, int> map;
+//
+//    map.insert()
+//    for (int i = 0; i <len; ++i) {
+//        s.insert(a[i]);
+//        s.insert(b[i]);
+//    }
+//
+//    for (; second_idx < second_len; ++second_idx) {
+//        s.insert(p_arr[second_idx]);
+//    }
+//
+//    cout << s.size();
 
-    map<int, int> map;
-
-    map.insert()
-    for (int i = 0; i <len; ++i) {
-        s.insert(a[i]);
-        s.insert(b[i]);
-    }
-
-    for (; second_idx < second_len; ++second_idx) {
-        s.insert(p_arr[second_idx]);
-    }
-
-    cout << s.size();
     return 0;
 }
 
