@@ -1544,7 +1544,6 @@ int get_size(int arr[]){
 #include <typeinfo>
 
 int main() {
-
     int len = 0;
     Node* curr = head;
     while(curr->next !=nullptr){
@@ -1552,19 +1551,20 @@ int main() {
         curr = curr->next;
     }
 
-    while(len!=0){
+    while(len>=0){
         Node* ptr = head;
         for(int i=0; i<len; i++){
-            cout <<"t : " << ptr->data << " ";
-            ptr = ->next;
+            ptr = ptr->next;
         }
 
-        //curr->next =
+        cout << ptr->data << " " << len << endl;
+        //curr->next = ptr;
+        //curr = curr->next;
         len--;
     }
 
 
-    return head;
+    return curr;
 
     int a[] = {1, 2, 3, 4, 5,54,6,7,5,234,234,123,23,4,23,12,123,12};
     int b[] = {1, 2, 3};
