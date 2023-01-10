@@ -1545,12 +1545,55 @@ int get_size(int arr[]){
 
 int main() {
 
-    int len = 0;
-    Node* t = new Node(1);
-    cout << t <<endl;
+    //int a[] = {16,17,4,3,5,2};
+    int a[] = {16,17,4,3,5,2,23};
 
-    Node* curr = t;
-    cout << curr <<endl;
+    int n = sizeof(a)/sizeof(int);
+
+    int max = a[0];
+
+    for (int i = 0, j = n-1; i < j; ++i, --j) {
+        int flag = 0;
+        if(a[i]>a[j]){
+            flag = a[i];
+        }else{
+            flag = a[j];
+        }
+
+        if(flag>max){
+            max = flag;
+        }
+    }
+    cout << max;
+    return 0;
+
+
+    vector<int> answer;
+
+    int j = 0;
+    while(j<n-1){
+        int leader = a[j];
+
+        for (int i = j+1; i < n; ++i) {
+            if(a[i] > leader){
+                leader = a[i];
+                j = i;
+            }
+        }
+
+        answer.push_back(leader);
+        if(j ==n-1){
+            printList(answer);
+            break;
+        }
+        j++;
+
+    }
+
+    answer.push_back(a[n-1]);
+    printList(answer);
+
+
 //
 //    while(curr->next !=nullptr){
 //        len++;
