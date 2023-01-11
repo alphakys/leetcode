@@ -8,6 +8,8 @@
 #include <string>
 #include <string.h>
 #include <map>
+#include <typeinfo>
+#include <algorithm>
 
 using namespace std;
 
@@ -1465,6 +1467,23 @@ public:
 //        }
     }
 
+    bool check(vector<long long> A, vector<long long> B, int N) {
+        //code here
+
+        sort(A.begin(), A.end());
+        sort(B.begin(), B.end());
+
+
+        for (int i = 0; i < N; ++i) {
+            if(A[i] != B[i]){
+                return 0;
+            }
+        }
+
+        return 1;
+    }
+
+
     int doUnion(int a[], int n, int b[], int m)  {
         //code here
         int check_arr[100001] = {0,};
@@ -1541,57 +1560,84 @@ int get_size(int arr[]){
     cout << sizeof(arr)<< endl;
     return sizeof(arr)/sizeof(int);
 }
-#include <typeinfo>
+
 
 int main() {
 
-    //int a[] = {16,17,4,3,5,2};
-    int a[] = {16,17,4,3,5,2,23};
+    int a[] = {3,321,3,123,3,24,34,23445342};
+    int b[] = {2,2};
 
-    int n = sizeof(a)/sizeof(int);
 
-    int max = a[0];
+    sort(a, a+8);
+    sort(a, a+8);
 
-    for (int i = 0, j = n-1; i < j; ++i, --j) {
-        int flag = 0;
-        if(a[i]>a[j]){
-            flag = a[i];
-        }else{
-            flag = a[j];
-        }
-
-        if(flag>max){
-            max = flag;
-        }
+    for (int i = 0; i < 8; ++i) {
+        cout << a[i] << "" << endl;
     }
-    cout << max;
-    return 0;
+    //printList(a);
 
-
-    vector<int> answer;
-
-    int j = 0;
-    while(j<n-1){
-        int leader = a[j];
-
-        for (int i = j+1; i < n; ++i) {
-            if(a[i] > leader){
-                leader = a[i];
-                j = i;
-            }
-        }
-
-        answer.push_back(leader);
-        if(j ==n-1){
-            printList(answer);
-            break;
-        }
-        j++;
-
-    }
-
-    answer.push_back(a[n-1]);
-    printList(answer);
+//    int *bool_arr = new int[10000001] {0,};
+//
+//    int N = 2;
+//
+//    for (int i = 0; i < N; ++i) {
+//        bool_arr[a[i]]++;
+//        bool_arr[b[i]]++;
+//    }
+//
+//    for (int i = 0; i < N; ++i) {
+//        if(bool_arr[a[i]]<2){
+//            cout << 0;
+//        }
+//    }
+//
+//    cout << 1;
+//    delete[] bool_arr;
+//
+//    int n = sizeof(a)/sizeof(int);
+//
+//    int max = a[0];
+//
+//    for (int i = 0, j = n-1; i < j; ++i, --j) {
+//        int flag = 0;
+//        if(a[i]>a[j]){
+//            flag = a[i];
+//        }else{
+//            flag = a[j];
+//        }
+//
+//        if(flag>max){
+//            max = flag;
+//        }
+//    }
+//    cout << max;
+//    return 0;
+//
+//
+//    vector<int> answer;
+//
+//    int j = 0;
+//    while(j<n-1){
+//        int leader = a[j];
+//
+//        for (int i = j+1; i < n; ++i) {
+//            if(a[i] > leader){
+//                leader = a[i];
+//                j = i;
+//            }
+//        }
+//
+//        answer.push_back(leader);
+//        if(j ==n-1){
+//            printList(answer);
+//            break;
+//        }
+//        j++;
+//
+//    }
+//
+//    answer.push_back(a[n-1]);
+//    printList(answer);
 
 
 //
