@@ -1418,6 +1418,22 @@ public:
 
 class Sorting{
 public:
+
+    int MissingNumber(vector<int>& array, int n) {
+        // Your code goes here
+        int check_arr[1000001] = {0,};
+        for (int i = 0; i < n-1; ++i) {
+            check_arr[array[i]]++;
+        }
+
+        for (int i = 1; i < n; ++i) {
+            if(check_arr[i] ==0){
+                return i;
+            }
+        }
+    }
+
+
     void sort012(int a[], int n)
     {
         // code here
@@ -1564,15 +1580,19 @@ int get_size(int arr[]){
 
 int main() {
 
-    int a[] = {3,321,3,123,3,24,34,23445342};
-    int b[] = {2,2};
+    vector<int> a = {1,3};
+    int N = 3;
 
+    int check_arr[1000001] = {0,};
+    for (int i = 0; i < N-1; ++i) {
+        check_arr[a[i]]++;
+    }
 
-    sort(a, a+8);
-    sort(a, a+8);
-
-    for (int i = 0; i < 8; ++i) {
-        cout << a[i] << "" << endl;
+    for (int i = 1; i < N; ++i) {
+        if(check_arr[i] ==0){
+            cout <<"i : " << i << endl;
+            break;
+        }
     }
     //printList(a);
 
