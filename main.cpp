@@ -1580,20 +1580,21 @@ int get_size(int arr[]){
 
 int main() {
 
-    vector<int> a = {1,3};
-    int N = 3;
 
-    int check_arr[1000001] = {0,};
-    for (int i = 0; i < N-1; ++i) {
-        check_arr[a[i]]++;
-    }
+//    Input:
+//    N = 4, K = 6
+//    arr[] = {1, 5, 7, 1}
+//    Output: 2
+//    Explanation:
+//    arr[0] + arr[1] = 1 + 5 = 6
+//                              and arr[1] + arr[3] = 5 + 1 = 6.
 
-    for (int i = 1; i < N; ++i) {
-        if(check_arr[i] ==0){
-            cout <<"i : " << i << endl;
-            break;
-        }
-    }
+    int arr[] = {1, 5, 7, 1};
+    int n = 4;
+    int k = 6;
+
+
+
     //printList(a);
 
 //    int *bool_arr = new int[10000001] {0,};
