@@ -1579,7 +1579,21 @@ int get_size(int arr[]){
 
 
 int main() {
+    int N = 3;
+    int M = 3;
 
+    int after[3][3] = {{1, 2, 3},
+                       {2, 2, 1}};
+
+    int res = 0;
+    int x = N;
+    int y = M;
+
+    for(int i = 0; i <= x; i++){
+        for( j = 0; j <= y; j++){
+            res += before(i,j);
+        }
+    }
 
 //    Input:
 //    N = 4, K = 6
