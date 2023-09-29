@@ -1588,17 +1588,39 @@ int main() {
 
     // int** arr = (int**) malloc(columns * sizeof(int*));
 
+    int*** arr = (int***) malloc(3 * sizeof(int***));
+
     for (int i = 0; i < 3; ++i) {
-        int*** arr = (int***) malloc(3 * sizeof(int**));
+        arr[i] = (int**) malloc(3 * sizeof(int**));
+        for (int j = 0; j < 3; ++j) {
+            arr[i][j] = (int*) malloc(3 * sizeof(int*));
+        }
+    }
+
+    int aa = 0;
+    for (int i = 0; i < 3; ++i) {
 
         for (int j = 0; j < 3; ++j) {
 
-            arr[j] = (int**) malloc(3 * sizeof(int*));
             for (int k = 0; k < 3; ++k) {
+                arr[i][j][k] = aa++;
 
             }
         }
     }
+
+    for (int i = 0; i < 3; ++i) {
+
+        for (int j = 0; j < 3; ++j) {
+
+            for (int k = 0; k < 3; ++k) {
+                cout << arr[i][j][k] << endl;
+            }
+        }
+    }
+
+
+
 
 
 
@@ -1626,7 +1648,7 @@ int main() {
 //    }
 
 
-    free(arr);
+    // free(arr);
 
     return 0;
 }
