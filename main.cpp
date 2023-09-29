@@ -1580,22 +1580,28 @@ int get_size(int arr[]){
 
 int main() {
 
-    int size = 10;
-    char* arr = (char*)malloc(size * sizeof(char));
+    //int size = 10;
+    // int* arr = (int*)malloc(size * sizeof(int));
 
-    for(int i=0; i<10; i++){
-        arr[i] = i+97;
+    int columns = 5;
+    int rows = 5;
+
+    //for(int i=0; i<columns; i++){
+    int** arr = (int**) malloc(columns * sizeof(int));
+
+    for (int j = 0; j < rows; ++j) {
+        arr[j] = (int*)malloc(sizeof(int) * rows);
+    }
 
 
-        //cout << arr[i] << " " << arr << " " << i << endl;
+    for (int i = 0; i < 5; i++) {
+        arr[0][i] = 12;
 
     }
 
-    for (int i = 0; i < 10; i++) {
-        //printf("%s\n", arr[i]);
-        cout << arr[i] << endl;
+    cout << arr[0][0];
 
-    }
+
     // free는 한 번만
     free(arr);
     // cout << *(arr) <<endl;
