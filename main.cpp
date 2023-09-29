@@ -1586,26 +1586,50 @@ int main() {
     int columns = 5;
     int rows = 5;
 
-    //for(int i=0; i<columns; i++){
-    int** arr = (int**) malloc(columns * sizeof(int));
+    // int** arr = (int**) malloc(columns * sizeof(int*));
 
-    for (int j = 0; j < rows; ++j) {
-        arr[j] = (int*)malloc(sizeof(int) * rows);
+    for (int i = 0; i < 3; ++i) {
+        int*** arr = (int***) malloc(3 * sizeof(int**));
+
+        for (int j = 0; j < 3; ++j) {
+
+            arr[j] = (int**) malloc(3 * sizeof(int*));
+            for (int k = 0; k < 3; ++k) {
+
+            }
+        }
     }
 
 
-    for (int i = 0; i < 5; i++) {
-        arr[0][i] = 12;
-
-    }
-
-    cout << arr[0][0];
 
 
-    // free는 한 번만
+//    int* linear_arr = (int*) malloc((columns * rows) * sizeof(int));
+//
+//    for (int j = 0; j < rows; ++j) {
+//        cout << "columns -> " << columns * j << endl;
+//        arr[j] = &linear_arr[columns * j];
+//        cout << arr[j] << endl;
+//    }
+//
+//    for (int i = 0; i < 5; i++) {
+//        for (int j = 0; j < rows; ++j) {
+//            arr[i][j] = j;
+//            // cout << arr[i][j] << endl;
+//        }
+//        // cout << "---------" << endl;
+//    }
+//
+//    for (int i = 0; i < 5; i++) {
+//        for (int j = 0; j < 5; j++) {
+//            cout << arr[i][j] << endl;
+//        }
+//    }
+
+
     free(arr);
-    // cout << *(arr) <<endl;
 
+    return 0;
+}
 
 
 
@@ -1765,8 +1789,6 @@ int main() {
 //
 //    cout << s.size();
 
-    return 0;
-}
 
 
 
