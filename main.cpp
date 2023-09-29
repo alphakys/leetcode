@@ -1579,21 +1579,48 @@ int get_size(int arr[]){
 
 
 int main() {
-    int N = 3;
-    int M = 3;
 
-    int after[3][3] = {{1, 2, 3},
-                       {2, 2, 1}};
+    int size = 10;
+    char* arr = (char*)malloc(size * sizeof(char));
 
-    int res = 0;
-    int x = N;
-    int y = M;
+    for(int i=0; i<10; i++){
+        arr[i] = i+97;
 
-    for(int i = 0; i <= x; i++){
-        for( j = 0; j <= y; j++){
-            res += before(i,j);
-        }
+
+        //cout << arr[i] << " " << arr << " " << i << endl;
+
     }
+
+    for (int i = 0; i < 10; i++) {
+        //printf("%s\n", arr[i]);
+        cout << arr[i] << endl;
+
+    }
+    // free는 한 번만
+    free(arr);
+    // cout << *(arr) <<endl;
+
+
+
+
+
+
+
+    //    int N = 3;
+//    int M = 3;
+//
+//    int after[3][3] = {{1, 2, 3},
+//                       {2, 2, 1}};
+//
+//    int res = 0;
+//    int x = N;
+//    int y = M;
+
+//    for(int i = 0; i <= x; i++){
+//        for( j = 0; j <= y; j++){
+//            res += before(i,j);
+//        }
+//    }
 
 //    Input:
 //    N = 4, K = 6
@@ -1603,9 +1630,9 @@ int main() {
 //    arr[0] + arr[1] = 1 + 5 = 6
 //                              and arr[1] + arr[3] = 5 + 1 = 6.
 
-    int arr[] = {1, 5, 7, 1};
-    int n = 4;
-    int k = 6;
+//    int arr[] = {1, 5, 7, 1};
+//    int n = 4;
+//    int k = 6;
 
 
 
