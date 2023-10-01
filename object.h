@@ -196,14 +196,114 @@ static inline Py_ssize_t Py_SIZE(PyObject *ob) {
     PyVarObject *var_ob = _PyVarObject_CAST(ob);
     return var_ob->ob_size;
 }
+
 #if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 < 0x030b0000
 #  define Py_SIZE(ob) Py_SIZE(_PyObject_CAST(ob))
 #endif
 
-static inline Py_ALWAYS_INLINE int _Py_Is_Immortal(PyObject *op)
+static inline Py_ALWAYS_INLINE int _Py_IsImmortal(PyObject *op)
+{
+#if SIZEOF_VOID_P > 4
+    return _Py_CAST(PY_INT32_T, op->ob_refcnt) < 0;
+#else
+    return op->ob_refcnt == _Py_IMMORTAL_REFCNT;
+#endif
+}
+#define _Py_IsImmortal(op) _Py_IsImmortal(_PyObject_CAST(op))
+
+static inline int Py_IS_TYPE(PyObject *ob, PyTypeObject *type) {
+    return Py_TYPE(ob) == type;
+}
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 < 0x030b0000
+#  define Py_IS_TYPE(ob, type) Py_IS_TYPE(_PyObject_CAST(ob), (type))
+#endif
+
+static inline void Py_SET_REFCNT(PyObject *ob, Py_ssize_t refcnt) {
+    /* This immortal check is for code that is unaware of immortal objects
+     * The runetime tracks tese objects and we should avoid as much
+     * as possible ahving extensions inadvertently chage the refcnt of an immortalized boject
+     */
+    if ( _Py_IsImmortal(ob)){
+        return;
+    }
+    ob->ob_refcnt = refcnt;
+}
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 < 0x030b0000
+#  define Py_SET_REFCNT(ob, refcnt) Py_SET_REFCNT(_PyObject_CAST(ob), (refcnt))
+#endif
+
+static inline void Py_SET_TYPE(PyObject *ob, PyTypeObject *type) {
+    ob->ob_type = type;
+}
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 < 0x030b0000
+#  define Py_SET_TYPE(ob, type) Py_SET_TYPE(_PyObject_CAST(ob), type)
+#endif
+
+static inline void Py_SET_SIZE(PyVarObject *ob, Py_ssize_t size) {
+    assert(ob->ob_base.ob_type != &PyLong_Type);
+    assert(ob->ob_base.ob_type != &PyBool_Type);
+    ob->ob_size = size;
+}
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 < 0x030b0000
+#  define Py_SET_SIZE(ob, size) Py_SET_SIZE(_PyVarObject_CAST(ob), (size))
+#endif
+
+/* Type objects contain a string containing the type name (to help somewhat in debugging),
+ * the acllocation parameters (see PyObject_New() and PyObject_NewVar()),
+ * and methods for accessing objects of the type. Methods are optional, a nil pointer meaning that particular kind of access is not available for this
+ * type. The Py_DEREF() macro uses the tp_dealloc method without checking for a nil pointer; it should always be implemented except if the
+ * implementation can gurantee that the reference count will never reach zero( for statically allocated typ objects)
+ * the methods for certain type gruops are now contained in separate method blocks.
+ *
+ */
+
+typedef PyObject * (*unaryfunc)(PyObject *);
+typedef PyObject * (*binaryfunc)(PyObject *, PyObject *);
+typedef PyObject * (*ternaryfunc)(PyObject *, PyObject *, PyObject *);
+typedef int (*inquiry)(PyObject *);
+typedef Py_ssize_t (*lenfunc)(PyObject *);
+typedef PyObject *(*ssizeargfunc)(PyObject *, Py_ssize_t);
+typedef PyObject *(*ssizessizeargfunc)(PyObject *, Py_ssize_t, Py_ssize_t);
+typedef int(*ssizeobjargproc)(PyObject *, Py_ssize_t, PyObject *);
+typedef int(*ssizessizeobjargproc)(PyObject *, Py_ssize_t, Py_ssize_t, PyObject *);
+typedef int(*objobjargproc)(PyObject *, PyObject *, PyObject *);
+
+typedef int (*objobjproc)(PyObject *, PyObject *);
+typedef int (*visitproc)(PyObject *, void *);
+typedef int (*traverseproc)(PyObject *, visitproc, void *);
 
 
+typedef void (*freefunc)(void *);
+typedef void (*destructor)(PyObject *);
+typedef PyObject *(*getattrfunc)(PyObject *, char *);
+typedef PyObject *(*getattrofunc)(PyObject *, PyObject *);
+typedef int (*setattrfunc)(PyObject *, char *, PyObject *);
+typedef int (*setattrofunc)(PyObject *, PyObject *, PyObject *);
+typedef PyObject *(*reprfunc)(PyObject *);
+typedef Py_hash_t (*hashfunc)(PyObject *);
+typedef PyObject *(*richcmpfunc) (PyObject *, PyObject *, int);
+typedef PyObject *(*getiterfunc) (PyObject *);
+typedef PyObject *(*iternextfunc) (PyObject *);
+typedef PyObject *(*descrgetfunc) (PyObject *, PyObject *, PyObject *);
+typedef int (*descrsetfunc) (PyObject *, PyObject *, PyObject *);
+typedef int (*initproc)(PyObject *, PyObject *, PyObject *);
+typedef PyObject *(*newfunc)(PyTypeObject *, PyObject *, PyObject *);
+typedef PyObject *(*allocfunc)(PyTypeObject *, Py_ssize_t);
 
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 >= 0x030c0000 // 3.12
+typedef PyObject *(*vectorcallfunc)(PyObject *callable, PyObject *const *args,
+size_t nargsf, PyObject *kwnames);
+#endif
+
+typedef struct {
+    int slot; // slot id, see below
+    void* pfunc; // function pointer
+} PyType_Slot;
+
+typedef struct {
+    const char* name;
+
+};
 
 
 

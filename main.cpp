@@ -1593,6 +1593,12 @@ using namespace std;
 
 int main() {
 
+    char c = 'c';
+    char* cp = &c;
+    
+    
+
+    
     int a= 23;
     int* b = &a;
 
