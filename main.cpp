@@ -1591,6 +1591,11 @@ using namespace std;
 
 #define Py_Is(x, y) ((x) == (y))
 
+#define PY_SSIZE_T_CLEAN
+
+#include <Python.h>
+
+
 int main() {
 
     char c = 'c';
