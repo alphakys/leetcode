@@ -1605,7 +1605,32 @@ typedef struct Test{
 
 int main() {
 
+//    char s[] = "Hello World";
+//    s[6] = 'x'; //try to edit letter at position 6
+//    printf("%s", s);
 
+// 이렇게 사용하지 말자 char str[]로 사용하도록 하자.
+    char* ss = "Hello World";
+//    *(ss+6) = 'x'; //try to edit letter at position 6
+//    printf("%s", ss);
+
+    //printf("%p\n", ss);
+
+    *ss = '1';
+
+    cout << ss;
+
+//    for (int i = 0; i < 11; ++i) {
+//        // (int)(*ss) = (int)(*ss) + 1;
+//        *ss = 's';
+//        // cout << (int)(*ss);
+//        printf("%p %d %d\n", ss, *ss, i);
+//
+//        // ss += 1;
+//    }
+
+
+    //strftime()
 //
 //    wchar_t* program = Py_DecodeLocale(argv[0], NULL);
 //    if (program==NULL){

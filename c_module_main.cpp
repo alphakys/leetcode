@@ -36,7 +36,6 @@ extern "C"
         //printf("%d %d", s->id, s->user_id);
         cout << s->id <<" " << s->user_id;
         // cout << "id : " << id << " user_id : " << s->user_id;
-
     }
 
 }
