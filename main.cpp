@@ -1603,6 +1603,25 @@ typedef struct Test{
 
 
 
+//class Workout_info(ctypes.Structure):
+//_fields_ = [
+//("id", ctypes.c_int),
+//("user_id", ctypes.c_int),
+//("workout_data__repAverageWeight", ctypes.POINTER(ctypes.c_int)),
+//("machine_base_type_id", ctypes.c_int),
+//("workout_type_id", ctypes.c_int),
+//("workout_data__workoutRep", ctypes.c_int),
+//("workout_data__weight", ctypes.c_double),
+//("workout_data__leftAvgForce", ctypes.c_double),
+//("workout_data__rightAvgForce", ctypes.c_double),
+//("workout_data__calories_burned", ctypes.c_int),
+//("workout_data__doneWorkoutTime", ctypes.c_wchar),
+//("workout_data__workoutTime", ctypes.c_wchar),
+//("workout_data__workout_time", ctypes.c_wchar),
+//("workout_category", ctypes.c_wchar),
+//
+//]
+
 int main() {
 
 //    char s[] = "Hello World";
